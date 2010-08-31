@@ -12,13 +12,13 @@
 
 ここで一つリマークがあります。前回の記事で齊藤誠さんの「競争の作法」を取り上げ、その検証をしたのですが、そのときの東証PER値のデータについて、十分に層化されていないのにも関わらず、その時間変動を必要以上に取り上げた上で恣意的な解釈を施しているのはおかしいという批判があるようです。これについては後日以下のサポートサイト(>>>link:http://www.bakfoo.com/atmarkit.html<<<)で取り上げたいと思いますが、「競争の作法」ではそのことに対処するために、PER値を直接取り扱うのではなく、エール大学のロバート・シラー氏が提唱する方法を解説しています。それは、個々の企業や業界の収益の短期変動の影響を排除するために、過去10年の実質ベースでみた平均企業業績で当期株価水準の実質値を割った値を利用するという方法です。詳しい解説は「競争の作法」を御覧ください。ただ、この方法を利用しても「いざなみ景気」後半のPER値の高さは際立つという結果になります。また、前回の記事の主旨は、オープン・ソースのソフトウェアを利用して、自分の手でオープン・データを使いこなす初歩を示すことであるために、「過去10年の実質ベースでみた平均企業業績で均す」という比較的煩雑な解析まで踏み込めなかったことをご承知おきください。
 
-●ggplot2
+●ggplot2という「デフォルト」グラフィックパッケージ
 >>>em:ggplot2<<<は、Rを現在よく利用しているユーザの中では、ほぼデフォルトのグラフィックツールとなっているグラフィックパッケージです。ggplot2の設計思想には、SYSTAT Software Incの計算機科学者 Leland Wilkinson氏が提唱する「グラフィック文法 (The Grammar of Graphics)」というものがあります。この「グラフィック文法」は、ユーザを見かけの良いグラフを作成させることに注力させるのではなく、データが本来持っている姿をグラフに反映させることを目指して提唱されているルールです。ユーザが自分の欲しい情報を特定すれば、自動的にソフトウェアが必要な処理をやりグラフを作成するのが本来の姿であり、ユーザがわざわざグラフを作成することをやらせない、というのが「グラフィック文法」が実現した形だそうです。Leland Wilkinson氏は、実際にこの「グラフィック文法」をSPSSベースのライブラリとして開発し、現在ではSPSSの標準機能となっています。「グラフィック文法」の詳細は以下の書籍にありますので、興味がある方は参考になさってください。
 
 The Grammar of Graphics
 >>>link:http://www.amazon.com/gp/product/0387245448/<<<
 
-このLeland Wilkinson氏の「グラフィック文法」の精神をRで実現するのが、ライス大学の統計学者Hadley Wickham氏が作成した>>>em:ggplot2<<<です。>>>em:ggplot2<<<の特徴はたくさんありますが、筆者が特に便利と感じているものに以下のものがあります。
+このLeland Wilkinson氏の「グラフィック文法」の精神をRで実現するのが、Rice大学の計算機統計学者Hadley Wickham氏が作成した>>>em:ggplot2<<<です。>>>em:ggplot2<<<の特徴はたくさんありますが、筆者が特に便利と感じているものに以下のものがあります。
 
 >>>ul
 ・データの何に注目したいかを指定するだけで、デフォルトで美しいグラフを描くことができる
@@ -191,7 +191,7 @@ install.packages("WDI")
 
 >>> img:population.png<<<
 
-中国には13億人という膨大な人数をかかえているのです。日本と同じだけの一人当たりのGDPを目指そうと思ったら、今の10倍の水準が必要です。
+中国は13億人という膨大な人数をかかえているのです。日本と同じだけの一人当たりのGDPを目指そうと思ったら、今の10倍の水準が必要です。
 
 最後は、参考までに、GDPの成長率についてのグラフを提示します。
 
@@ -217,67 +217,187 @@ http://www.google.com/publicdata?ds=wb-wdi&met=ny_gdp_mktp_kd_zg&tdim=true&dl=en
 
 ●Wikileaksのアフガン戦争ダイアリー
 
-「オープン・データ的」イベントとして最近大きかったものは、今年の7月25日にWikileaksが公開した、アフガン戦争ダイアリー(Afgan War Diary)だと思います。これはいままで数々の機密ファイルや機密映像の曝露を行ってきた民間団体Wikileaksが、アフガニスタンの駐留米軍の戦闘レポートを記録したもので、2004年から2009年の6年間に渡る76,900件のレコードから構成されています。
+最近、「オープン・データ的」イベントとして最近大きかったものは、今年の7月25日にWikileaksが公開した、アフガン戦争ダイアリー(Afgan War Diary)だと思います。これはいままで数々の機密ファイルや機密映像の暴露を行ってきた民間団体Wikileaksが、米軍からの内部情報としてまとまったレポートを公表しました。これは、アフガニスタンの駐留米軍の戦闘をイベントごとに記録したもので、2004年初から2009年末の6年間に渡る76,900件のレコードから構成されています。
 
-Afghan War Diary, 2004-2010
->>>link:http://www.wikileaks.org/wiki/Afghan_War_Diary,_2004-2010<<<
+米国政府の発表ではこの「ダイアリー」自体には軍事的・諜報的な価値がないとされていますが、しかしこれだけ大量の生データが、現在も戦闘及び駐留が継続される作戦から流出したことは前代未聞です。そして一つ一つの情報の断片だけでは見えないことも、ある切り口からまとまった量のデータをみたときには、新たな情報が見えてこないとは限りません。ただし、今回は単にアフガン戦争ダイアリーのデータをRに取り込み、それれを図示・可視化し、簡単な統計的な解析をするというだけに留めたいと思います。つまり、比較的大きなオープン・データを入手し、取り込み、図示し、解析するという過程をステップバイステップで示したいと思います。
 
-上記のサイトには、HTML, CSV, SQL, KMLファイルなどそのデータが誰でもダウンロードするこができます。
+解析方法はNew York大学の政治学の大学院生であるDrew Conway氏の方針を採用することにします。実は、筆者もこのWikileaksのデータ公開があった直後に、データをダウンロードしてRにて解析を試みていましたが、Conway氏はそれより先に解析結果とコードを自身のブログにて公開しました。そしてその後もConway氏は精力的に解析活動を続け、以下のような一連の記事を生み出しています。
 
-筆者もこのデータをダウンロードしてRにて解析を試みていましたが、同時にNew York大学の政治学の大学院生であるDrew Conway氏が同じデータを解析した結果とコードを自身のブログにて公開しました。そしてその後もConway氏は勢力的に解析活動を続け、以下のような一連のブログ記事を生み出しました。
-
+Zero Intelligence Agents
 http://www.drewconway.com/zia/?p=2226
 http://www.drewconway.com/zia/?p=2234
 http://www.drewconway.com/zia/?p=2268
 http://www.drewconway.com/zia/?p=2295
 http://www.drewconway.com/zia/?p=2324
 
-ここでは、Conway氏の解析をベースに、wikileaksのデータを図示・可視化するとともに、筆者も同時にやっていたベンフォードの法則への割り当てとカイ二乗適合度検定をしてみたいと思います。利用するコードの前半のデータ操作の部分は、筆者のものより洗練されているConway氏のコードを使用させていただき、後半の解析部分は筆者のコードをConway氏のコードにマージする形で示したいと思います。Conway氏には、電子メイルにてディスカッションをさせてもらいました。ここにConway氏に感謝いたします。
+ここでは、Conway氏の解析をベースに、wikileaksのデータを図示・可視化するとともに、筆者も同時にやっていたベンフォードの法則への割り当てとカイ二乗適合度検定をしてみたいと思います。利用するコードの前半のデータ操作の部分は、筆者のものより洗練されているConway氏のコードを使用させていただき、後半の解析部分は筆者のコードをConway氏のコードにマージする形で示したいと思います。この記事を書く際に、Conway氏には電子メイルにてディスカッションをさせてもらいました。ここにConway氏に感謝いたします。
+
+何よりもまずデータを読み込まなければなりません。この「アフガン戦争ダイアリー」は以下にあり、HTML, CSV, SQL, KMLファイルなどのファイルフォーマットで、誰でもダウンロードが可能な状態になっています。
+
+Wikileaks Afghan War Diary, 2004-2010
+>>>link:http://www.wikileaks.org/wiki/Afghan_War_Diary,_2004-2010<<<
+
+これから先以降は、この中のCSVデータをダウンロードして、圧縮を伸長した状態であると仮定します。伸長をするとafg.csvというファイルができるはずです。伸長したファイルのサイズは73.9MBというCSVファイルとしてはかなり大きなものです。そしてそのファイルが"/home/my/"ディレクトリにあると仮定します。
+
+>>>em:setwd<<<関数でアフガン戦争ダイアリーのCSVファイルがあるディレクトリをワーキングディレクトリとし、データを読み込みます。
 
 >>>shell
-library(ggplot2)
-setwd("/Users/yutakashino/Dropbox/sandboxDrop/@IT/temp/")
-afg<-read.csv("afg.csv",stringsAsFactors=FALSE)
-
-colnames(afg)<-c("ReportKey","DateOccurred","Type","Category","TrackingNumber","Title","Summary","Region","AttackOn",
-    "ComplexAttack","ReportingUnit","UnitName","TypeOfUnit","FriendlyWIA","FriendlyKIA","HostNationWIA","HostNationKIA",
-    "CivilianWIA","CivilianKIA","EnemyWIA","EnemyKIA","EnemyDetained","MGRS","Latitude","Longitude","OriginatorGroup",
-    "UpdatedByGroup","CCIR","Sigact","Affiliation","DColor","Classification")
-
-afg$DateOccurred <- as.Date(afg$DateOccurred)
-afg$Region[grep("RC ",afg$Region,fixed=T,invert=T)]<-"UNKNOWN"
-afg$Region<-as.factor(afg$Region)
-
-event <- ggplot( afg, aes(x = DateOccurred) ) + stat_bin( aes( y = ..count.., fill = AttackOn ), binwidth=30 ) + facet_wrap( ~Region ) + 
-    opts( title = "Monthly Event Report (Region and Attack Target)" ) + xlab( "Date ") + ylab( "Report Counts" ) + 
-    scale_fill_manual( values = c( "darkred", "darkblue", "darkgreen", "orange" ), name = "Who Attacked" ) + scale_x_date( major = "years", minor = "months" )
-ggsave("wikileaks_event.png", plot = event, width=10, height=5)
-
-weeklyCount<-cbind(table(cbind(format.Date(afg$DateOccurred,"%Y %W"))))
-
-pullLeaddigit<-function(x) {
-    as.numeric(substring(formatC(x, format = 'e'), 1, 1))
-} 
-
-digits <- table(pullLeaddigit(weeklyCount))
-digits <- cbind(digits)
-digits <- as.data.frame(digits)
-colnames(digits) <- "digitCount"
-digits$digitCount <- digits$digitCount/sum(digits$digitCount)
-
-dbenford <- function(x) {
-    return(log10((1+x)/x))
-}
-
-benford <- ggplot(digits, aes(x=1:9, y=digitCount)) + geom_path(aes(colour = "observation")) + geom_point(aes(colour = "observation")) + stat_function(fun = dbenford, aes(colour = "theory")) + scale_colour_manual( values = c("observation" = "orange", "theory" = "blue")) + xlab("Digit") + ylab("Count Density") + opts(title="Applying Benford's law to Wikileaks Data") 
-ggsave("wikileaks_benford.png", plot=benford, width=7, height=7)
-
-chisq.test(x= digits$digitCount, y = dbenford(1:9))
-
+> setwd("/home/my/")
+> afg<-read.csv("afg.csv",stringsAsFactors=FALSE)
+> head(afg)
+ 以下にエラー do.call("data.frame", rval) :  変数名は256バイトが上限です 
 <<<
+
+最後の行は変数名に256バイトを超えるオブジェクトがあるので、>>>em:head<<<関数が失敗しています。そこでデータの構造をみるために>>>em:str<<<関数を利用すると、32カラムで76910行のデータフレームになぅっていることがわかります。
+
+>>>shell
+> str(afg)
+'data.frame':	76910 obs. of  32 variables:
+ $ D92871CA.D217.4124.B8FB.89B9A2CFFCB4                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    : chr  "C592135C-1BFF-4AEC-B469-0A495FDA78D9" "D50F59F0-6F32-4E63-BC02-DB2B8422DE6E" "E3F22EFB-F0CA-4821-9322-CC2250C05C8A" "4D0E1E60-9535-4D58-A374-74367F058788" ...
+<<<
+ 
+ このデータフレームのカラムにカラム名を追加します。そのために「アフガン戦争ダイアリー」のデータ構造について調べる必要があります。このために、http://wardiary.wikileaks.org/>>>link:http://wardiary.wikileaks.org/<<<にあるボールド体による"the structure of the report"を参考にしましょう。
+ 
+これを眺めてまず図示したいのは、6年間に渡って毎月どのくらいのイベントがどこで生じているかということです。それに必要なカラムはどうやら、イベントが起きた日付データの>>>em:DateOccurred<<<、場所を表す>>>em:Region<<<、イベントの種類（友軍への攻撃、敵への攻撃等）を表す>>>em:AttackOn<<<（これは>>>em:Affilication<<<でも代替できそうです）くらいでしょうか。ちなみに、この「ダイアリー」の省略コードにある、KIAは"Killed in Action", WIAは"Wounded in Action"だそうです。そして、FriendlyWIAは友軍が負傷、CivilianKIAは一般市民が死亡人数を表すそうです。これで、攻撃の種類による負傷者数や死者数を知ることができそうです。その他の略字は、先程のリンク先の説明を参考にしてください。
+
+さて、「ダイアリー」のデータ構造がわかったところで、読み込んだデータフレームに、上記のサイトにあるカラム名を追加します。
+ 
+>>>shell
+> colnames(afg)<-c("ReportKey", "DateOccurred", "Type", "Category", "TrackingNumber", "Title", "Summary", "Region", "AttackOn", "ComplexAttack", "ReportingUnit", "UnitName", "TypeOfUnit", "FriendlyWIA", "FriendlyKIA", "HostNationWIA", "HostNationKIA", "CivilianWIA", "CivilianKIA", "EnemyWIA", "EnemyKIA", "EnemyDetained", "MGRS", "Latitude", "Longitude", "OriginatorGroup",  "UpdatedByGroup", "CCIR", "Sigact", "Affiliation", "DColor", "Classification")
+> head(afg)
+                             ReportKey        DateOccurred                Type            Category
+1 C592135C-1BFF-4AEC-B469-0A495FDA78D9 2004-01-01 00:00:00     Friendly Action Cache Found/Cleared
+2 D50F59F0-6F32-4E63-BC02-DB2B8422DE6E 2004-01-01 00:00:00    Non-Combat Event          Propaganda
+3 E3F22EFB-F0CA-4821-9322-CC2250C05C8A 2004-01-01 00:00:00        Enemy Action         Direct Fire
+4 4D0E1E60-9535-4D58-A374-74367F058788 2004-01-01 00:00:00     Friendly Action Cache Found/Cleared
+5 84A769E7-73B4-4B30-AD36-06497F766F15 2004-01-02 00:00:00 Suspicious Incident        Surveillance
+6 B81BE975-9081-4D19-A8FE-C2DB0C18A095 2004-01-02 00:00:00 Suspicious Incident        Surveillance
+        TrackingNumber                      Title
+1 2007-033-004738-0185 CACHE FOUND/CLEARED  Other
+2 2007-033-010818-0798          PROPAGANDA  Other
+3 2007-033-004042-0850         DIRECT FIRE  Other
+4 2007-033-004738-0279 CACHE FOUND/CLEARED  Other
+5 2007-033-010701-0111                SURV  Other
+6 2007-033-010701-0220                SURV  Other
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                               Summary
+1                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                       USSF FINDS CACHE IN VILLAGE OF ....
+<<<
+ 
+コードでは>>>em:colnames<<<を利用してカラム名を付け、>>>em:head<<<で最初の6行を取り出しました。ここでは長くなりますので、Summaryの先頭部分以降は省略しています。Summaryに長い文字のレポートが入っていることが分かります。どうやら、最初の>>>em:head<<<関数がミスをしたのはここをタイトルとして読み込もうとしたことが理由のようです。
+
+さて、ここで「6年間に渡って毎月どのくらいのイベントがどこで生じているか」という図示をするために、日付データや地域データを整形します。日付データは>>>as.Data<<<としてdateオブジェクトに変換します。幸い、このCSVの>>>em:DateOccurred<<<にあるデータはUnix形式の日付データなので、そのまま素直にはいります。また、地域を表す>>>em:Region<<<は因子として扱いたいので>>>as.factor<<<でfactorオブジェクトに変換します。
+
+>>>shell
+> afg$DateOccurred <- as.Date(afg$DateOccurred)
+> afg$Region<-as.factor(afg$Region)
+<<<
+
+さて、この状態においては>>>em:afg<<<オブジェクトには必要なデータが全て揃っていることになります。「6年間に渡って毎月どのくらいのイベントがどこで生じているか」を図示するためにはどうすればいいでしょう？まず、読み込むデータフレームは>>>em:afg<<<であり、日付のx軸は>>>em:DataOccrred<<<である。そして、これを30日ごとのヒストグラムとして表す。しかし、ヒストグラムはイベントの種類>>>em:AttackOn<<<もしくは>>>em: Affiliation<<<によって色分けした積み上げグラフにし、しかも、これら全てについて地域を表す>>>em:Region<<<ごとに書き出したい。これを実行するのは大変なようです。しかし、>>>ggplot2<<<を使用すれば、この作業はいとも簡単にできてしまいます。
+
+以下にそのコードを示します。
+
+>>>shell
+> library(ggplot2)
+> event <- ggplot( afg, aes(x = DateOccurred) ) + stat_bin( aes( y = ..count.., fill = AttackOn ), binwidth=30 ) + facet_wrap( ~Region ) + 
+    opts( title = "Monthly Event Report per Region and Target" ) + xlab( "Date") + ylab( "Report Counts" ) + 
+    scale_fill_manual( values = c( "darkred", "darkblue", "darkgreen", "orange" ), name = "AttackOn" ) + scale_x_date( major = "years", minor = "months" )
+> ggsave("wikileaks_event.png", plot = event, width=10, height=5)
+<<<
+
+>>>em:ggplot<<<でデータフレームとx軸を指定し、>>>em:stat_bin<<<でヒストグラムを描きます。>>>em:stat_bin<<<の>>>binwidth<<<は30日ごとのヒストグラムにしたいので30としています。また、>>>em:stat_bin<<<の>>>em:aes<<<関数には、y軸はカウントデータを表す>>>em:...cont...<<<を、色分けは>>>em:AttackOn<<<で行うのでそれを>>>em:fill<<<の引数としました。最後の>>>em:Region<<<ごとに書き出すのは>>>em:ggplot2<<<の「十八番」であるファセットグラフを利用します。>>>em:facet_wrap<<<関数がそれです。
+ 
+ こうして書き出したグラフは次ようになります。
+ 
+ >>>img: wikileaks_event.png<<<
+ 
+これを見ると分かるのは、戦闘は全ての地域で行われるのではなく、タリバン勢力の支配地域となっている東および南に多いということです。また、各々のファセットグラフの時間変動をみると季節性の変動があることが分かります。アフガニスタンは冬が厳しいためです。更に、時間を経るごとに戦闘数が多くなっていることがわかります。つまりアフガニスタン戦争が終結した後も、内戦状態が増々激しさを増している状況が想像できます。果たして2011年7月から米軍は撤退を開始できるのでしょうか？この解析からは疑問符が付くように思えますが、それは杞憂でしょうか？
+ 
+まだ、解析は始まったばかりなのですが、紙面の都合上、次に進みたいと思います。果たしてこのデータは本物なのかどうか、ということです。もちろん、既に米国政府はこのデータは正式なものであると認めていますので、それを信じるならばこれ以上の解析は必要ありません。しかし、ここではその判断を一旦留保しまして、データが人為的に作成された可能性があるかについて調べたいと思います。このデータが人為的に作成されたかどうかを検証するための有用なツールが、「ベンフォードの法則」です。これは自然界に存在する多くの数字や数値に対して、最初の一桁だけを取り出して数えた場合、それがある法則( log10((1+x)/x )に基づいているという経験則です。有名なのが、経理データで不正経理をしているとおぼしき数値の先頭桁だけを取り出しヒストグラムにした場合、ベンフォードの法則に従っていない場合は人がデッチ上げをした可能性がありそうだ、というものです。実際に、不正な会計操作を発見した実例が以下のエッセイに書いてあります。英語が億劫でなければ読んでみてください。
+
+I've Got Your Number
+http://www.journalofaccountancy.com/Issues/1999/May/nigrini.htm
+
+その他の詳細は、ウィキペディアを参考にするか、筆者も昔個人ブログに記述したことがあったので、それを参考にしてください。
+
+ウィキペディア: ベンフォードの法則
+http://ja.wikipedia.org/wiki/%E3%83%99%E3%83%B3%E3%83%95%E3%82%A9%E3%83%BC%E3%83%89%E3%81%AE%E6%B3%95%E5%89%87
+
+wrong, rogue and log: Benfordの法則 -その1-
+http://kashino.exblog.jp/7309447/
+wrong, rogue and log: Benfordの法則 -その2-
+http://kashino.exblog.jp/7320241/
+
+さて、このベンフォード則の「ダイアリー」への適用ですが、先程の図示化した月ベースではデータ数が少なすぎ、日ベースではデータの種類が少なすぎるので、都合がよくなさそうです。ここでは、週ごとにデータをまとめることにします。実は、これはすごく簡単で、すでにRのdateオブジェクトになっているので、>>>format.Date<<<関数を利用してフォーマットを指定するだけです。
+
+>>>shell
+> weeklyCount<-cbind(table(cbind(format.Date(afg$DateOccurred,"%Y %W"))))
+> head(weeklyCount)
+        [,1]
+2004 00   12
+2004 01   27
+2004 02   43
+2004 03   31
+2004 04   27
+2004 05   16
+<<<
+
+最終的に縦ベクトルとして利用したいので、>>>em:cbind<<<、>>>em:table<<<、>>>em:cbind<<<という姑息な手段を利用しました。さて、この>>>em:weeklyCount<<<の先頭桁を取り出すには、工夫が必要そうです。幸いC言語の数値フォーマットに変換する関数>>>em:formatC<<<を利用すれば、例えば、
+
+>>>shell
+> formatC(12, format="e")
+[1] "1.2000e+01"
+<<<
+
+のようにできるので、これを文字列の部分文字列取り出し関数>>>em:substring<<<を利用すればよさそうです。以下にコードを示しました。
+
+>>>shell
+> pullLeaddigit<-function(x) { as.numeric(substring(formatC(x, format = "e"), 1, 1)) } 
+> head(pullLeaddigit(weeklyCount))
+[1] 1 2 4 3 2 1
+<<<
+
+実際に適用すると、良好なようです。さて、この>>>em:pullLeaddigit<<<関数をつかって、>>>em:weeklyCount<<<の先頭桁を取り出し、それを散布図プロットをして、ベンフォードの法則の理論曲線と比べてみましょう。
+
+>>>shell
+> digits <- table(pullLeaddigit(weeklyCount))
+> digits <- cbind(digits)
+> digits <- as.data.frame(digits)
+> colnames(digits) <- "digitCount"
+> digits$digitCount <- digits$digitCount/sum(digits$digitCount)
+>
+> dbenford <- function(x) { return(log10((1+x)/x)) }
+> 
+> benford <- ggplot(digits, aes(x=1:9, y=digitCount)) + geom_path(aes(colour = "observation")) + geom_point(aes(colour = "observation")) + stat_function(fun = dbenford, aes(colour = "theory")) + scale_colour_manual( values = c("observation" = "orange", "theory" = "blue")) + xlab("Digit") + ylab("Count Density") + opts(title="Applying Benford's law to Wikileaks Data") 
+> ggsave("wikileaks_benford.png", plot=benford, width=7, height=7)
+<<<
+
+以下が出力されるグラフです。
+
+>>>img: wikileaks_benford.png<<<
+
+オレンジがデータ、青がベンフォードの法則の理論曲線です。これをみるとわかるように、1が理論曲線に比べて少ない気はしますし、2は多すぎるような気がしますが、まあ大局的にはよく当たっているように思います。
+
+さて、それが本当に統計学的に言えるかどうかを調べるには、そうです、第一回、第二回で取り上げた統計的検定のカイ二乗適合度検定を用いればいいのです。この場合の帰無仮説は、「アフガン戦争ダイアリーの週データの先頭桁カウントは、ベンフォード則の分布と同じである」です。>>>em:chisq.test<<<を利用して早速しらべてみましょう。
+
+>>>shell
+> chisq.test(digits$digitCount, dbenford(1:9))
+
+	Pearson's Chi-squared test
+
+data:  digits$digitCount and dbenford(1:9) 
+X-squared = 72, df = 64, p-value = 0.2303
+
+ 警告メッセージ： 
+In chisq.test(x = digits$digitCount, y = dbenford(1:9)) :
+   カイ自乗近似は不正確かもしれません 
+<<<
+
+結果を見ると分かるように、>>>em:p-value = 0.2303<<<である、つまり有意水準5%でも帰無仮説は棄却できないということです。これは言い換えると、「アフガン戦争ダイアリーの先頭桁カウントは、ベンフォード則の分布と同じである」ことを否定するのは統計的に言えなさそうだということです。以上、ベンフォード則とのグラフをみても、カイ二乗適合度検定をみても、アフガン戦争ダイアリーは人が捏造したものでなさそうだ、ということです。
+
+以上、かなり重たい内容になってしまいましたが、このようにデータさえ手にいれれば、データ解析を自分の手でできることが感覚的にわかったかと思います。
 
 ●次回について
 
-それでは、二週間後にまたお目にかかりましょう。
+今回は、>>>em:ggplot2<<<の紹介、webサービスを持っているデータリポジトリの利用の仕方、そして、それなりに大きなデータをどのように扱って可視化し、解析するか、ということについて実践しました。次回はオープン・データを図示・可視化する際の注意点をまとめると共に、統計学的な推測や予測についての初歩についてお話したいと思います。それでは、二週間後にまたお目にかかりましょう。
 
 

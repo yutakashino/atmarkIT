@@ -1,0 +1,225 @@
+>>>filepath:/fcoding/articles/<<<
+>>>rensai_name:statbushknife<<<
+>>>rensai_number:02<<<
+>>>date:2010/8/18<<<
+>>>title:第4回 オープン・データを図示・可視化すること(2)<<<
+>>>abs（編集部）<<<
+
+●オープン・データを図示・可視化する(2)
+今回は前回の続きとして、オープン・データをプロットすることをテーマに取り上げます。前回はRの組込みのグラフ描画関数である、>>>em:plot<<<や>>>em:ts.plot<<<のみを利用しましたが、今回は、外部グラフィックライブラリとして最近非常に注目され、使用頻度が高くなっている>>>em:ggplot2<<パッケージを利用します。この連載でも今後、グラフ描画については>>>em:ggplot2<<<を利用していく予定です。
+
+また今回はwebサービスを利用したデータ取得についてもとりあげます。
+
+ここで一つリマークがあります。前回の記事で齊藤誠さんの「競争の作法」を取り上げ、その検証をしたのですが、そのときの東証PER値のデータについて、十分に層化されていないのにも関わらず、その時間変動を必要以上に取り上げた上で恣意的な解釈を施しているのはおかしいという批判があるようです。これについては後日以下のサポートサイト(>>>link:http://www.bakfoo.com/atmarkit.html<<<)で取り上げたいと思いますが、「競争の作法」ではそのことに対処するために、PER値を直接取り扱うのではなく、エール大学のロバート・シラー氏が提唱する方法を解説しています。それは、個々の企業や業界の収益の短期変動の影響を排除するために、過去10年の実質ベースでみた平均企業業績で当期株価水準の実質値を割った値を利用するという方法です。詳しい解説は「競争の作法」を御覧ください。ただ、この方法を利用しても「いざなみ景気」後半のPER値の高さは際立つという結果になります。また、前回の記事の主旨は、オープン・ソースのソフトウェアを利用して、自分の手でオープン・データを使いこなす初歩を示すことであるために、「過去10年の実質ベースでみた平均企業業績で均す」という比較的煩雑な解析まで踏み込めなかったことをご承知おきください。
+
+●ggplot2
+>>>em:ggplot2<<<は、Rを現在よく利用しているユーザの中では、ほぼデフォルトのグラフィックツールとなっているグラフィックパッケージです。ggplot2の設計思想には、SYSTAT Software Incの計算機科学者 Leland Wilkinson氏が提唱する「グラフィック文法 (The Grammar of Graphics)」というものがあります。この「グラフィック文法」は、ユーザを見かけの良いグラフを作成させることに注力させるのではなく、データが本来持っている姿をグラフに反映させることを目指して提唱されているルールです。ユーザが自分の欲しい情報を特定すれば、自動的にソフトウェアが必要な処理をやりグラフを作成するのが本来の姿であり、ユーザがわざわざグラフを作成することをやらせない、というのが「グラフィック文法」が実現した形だそうです。Leland Wilkinson氏は、実際にこの「グラフィック文法」をSPSSベースのライブラリとして開発し、現在ではSPSSの標準機能となっています。「グラフィック文法」の詳細は以下の書籍にありますので、興味がある方は参考になさってください。
+
+The Grammar of Graphics
+>>>link:http://www.amazon.com/gp/product/0387245448/<<<
+
+このLeland Wilkinson氏の「グラフィック文法」の精神をRで実現するのが、ライス大学の統計学者Hadley Wickham氏が作成した>>>em:ggplot2<<<です。>>>em:ggplot2<<<の特徴はたくさんありますが、筆者が特に便利と感じているものに以下のものがあります。
+
+>>>ul
+・データの何に注目したいかを指定するだけで、デフォルトで美しいグラフを描くことができる
+・データや表示の切り口指定を後から追加できるので、グラフ作成をしながらデータを探索できる
+・レジェンドと結びついた色分け設定が自動である
+・ボックスプロット、散布図、線グラフというグラフの見栄を自由に変更できる
+・ファセットグラフ（小さなグラフがタイル状に組み合わさったグラフ）を簡単に作成できる
+・複数のデータを一つのグラフにプロットするときであっても、後から足し合わせればよい
+・時系列データであっても特別に時系列オブジェクトとして取り扱う必要がない
+・審美的 (aesthetic) なグラフィック要素は、後から加えることができる
+・デカルト座標も極座標も自在に切り替えることができる
+・グラフィックテーマを設定できるので、見栄をドラステックに切り替えることができる
+<<<
+
+今回の記事でも色分け設定の自動化やファセットグラフを使いますので、そのときに上記に掲げた特徴が何を言っていたのかを思い起こしてくだされば、と思います。
+
+ここで本来ならば>>>em:ggplot2<<<のチュートリアルとなるわけですが、この>>>em:ggplot2<<<は巨大なライブラリであり、例え入門的な内容であっても、数回の連載では終わりそうにありません。そこで、初歩の初歩をサポートサイト(>>>link:http://www.bakfoo.com/atmarkit.html<<<)に動画としてまとめましたので、これを利用ください。また英語のリスニングやリーディングに問題ない方は、Hadley Wickham氏自身が講義しているビデオがありますので、それを参考になさってください。
+
+Hadley Wickham's Data Visualization using ggplot2 short course
+>>>link:http://blip.tv/file/3362248<<<
+
+リファレンスマニュアルはオンライン上にあります。使い方を一度習得すれば、このオンラインリファレンスマニュアルは非常に使い勝手がよいことがわかるはずです。
+
+ggplot2 refrence manual
+>>>link:http://had.co.nz/ggplot2/<<<
+
+また、Hadley Wickham氏の書いた>>>em:ggplot2<<<の本もあります。
+
+ggplot2: Elegant Graphics for Data Analysis
+>>>link:http://www.amazon.com/gp/product/0387981403<<<
+
+さらにはブログ形式で、>>>em:ggplot2<<<による実例コードを提示しているサイトもあります。
+
+Learning R
+>>>link:http://learnr.wordpress.com/<<<
+
+以上のように、現在では書籍やオンライン上のリソースが非常に豊富ですので、初歩の使い方さえ掴めば、あとは若干の探索と試行錯誤でどうにかなると思います。
+
+さて、抽象的なことだけで終わるのもこの連載の主旨に反しますので、ここで具体的に>>>em:ggplot2<<<を利用して、その雰囲気を掴みたいと思います。データには前回の最後の日本円の実質実効為替レートを用いて、グラフ表示をしてみることにします。まず、標準パッケージでない、>>>em:ggplot2<<<をインストールする必要があります。以下のRのコマンドで、筑波大学をCRANミラーサイトで選びながらパッケージをインストールしてください。この手順について、サポートサイト(>>>link:http://www.bakfoo.com/atmarkit.html<<<)の動画でも観ることができるようにします。
+
+>>>shell
+> install.packages("ggplot2")
+<<<
+
+データは前回と同様のGoogle Docsにあるものを利用します。
+
+>>>shell
+> data <- read.csv("http://spreadsheets.google.com/pub?key=0AlBuJgqcP5f3dExEQkZfem1MeXFPZTA1UUVaVVZud3c&hl=en&output=csv", header=TRUE, skip=1)
+<<<
+
+前回は、この実質実効為替レートのデータを一度時系列オブジェクトに変換してから>>>em:ts.plot<<<で描画しましたが、>>>em:ggplot2<<<を利用する場合はその必要がありません。ただし、日付・時間を表すカラムかを日付オブジェクトに変換する必要があります。以下に、その指定をした後にプロットし、そのグラフを保存する手順を示します。
+
+>>>shell
+> data$yearmonth <- paste(data$yearmonth, "/01", sep="")
+> data$yearmonth <- as.Date(data$yearmonth, "%Y/%m/%d")
+> library(ggplot2)
+> f <- ggplot(data = data, aes(x=yearmonth, y=1/stfx*100)) + geom_line(aes(colour="JPY")) + geom_hline(yintercept=1) 
+> f + xlab("Year") + ylab("Effective exchange rate index") + opts(title="Effective exchange rate index JPY")  + scale_colour_manual(values=c("JPY"="darkblue"))
+> ggsave("japanfx2.png", plot = f)
+<<<
+
+このコードの実行結果が次のグラフです。
+
+>>>img:japanfx2.png<<<
+
+グラフを見ると分かるように、Rの>>>em:plot<<<で作成するデフォルトのグラフよりもかなり見かけのよい、綺麗なグラフが描けることがわかります。
+
+このコードの簡単な説明をします。一行目の>>>em:paste<<<関数を利用して"/01"という文字列を「強引」に付け加えているのは、Rの>>>em:date<<<オブジェクトには必ず日付要素が必用だからです。二行目では一行目で加工したものを>>>em:date<<<オブジェクトに変換するために、>>>em:as.Date<<<関数を利用しています。三行目以降がプロットの実際です。コードを見ると分かるように、いろいろなオブジェクトを>>>em:+<<<記号で次々と加え合わせていっています。
+
+まず、>>>em:ggplot2<<<をライブラリとして読み込みます。次に、>>>em:ggplot<<<関数でプロットするべきデータフレームと、プロットするべき変数を指定します。>>>em:ggplot2<<<では、目に触れるものはすべて>>>em:aes<<<関数の中に書くことになっているので、x軸とy軸に何を表示するかという指定はこの>>>em:aes<<<関数で行ないます。>>>em:aes<<<という関数の由来は、"aesthetics（エステテックス、美的要素) "の略です。また、データ点を線で結ぶことを指定するのが>>>em:geom_line<<<関数で、y=1.0の水平線を描くのが>>>em: geom_hline<<<関数です。>>>em:geom_line<<<には、>>>em:aes<<<関数によって、線の色指定をしています。この色指定は実は変数を割り当てるだけで、実際の色は後ほど>>>em:scale_colour_manual<<<関数にて行っています。>>>em: geom_hline<<<では、水平線のy切片を指定するのに>>>em:yintercept<<<引数を利用します。以上のプロットオブジェクトは、>>>em:ggplot2<<<オブジェクトとして>>>em:f<<<という変数に割り当てるとしました。
+
+次の行はx軸、y軸のラベル、グラフのタイトル、そして先程の色変数の色を"darkblue"として決定しています。関数名から明らかなので敢えて説明はいらないと思います。ポイントは、前の行で作成した>>>em:ggplot2<<<オブジェクト>>>em:f<<<に後から追加的に指定をすればよい、ということです。最後の行は>>>em:ggsave<<<関数でグラフィックを保存します。拡張子により自動判定されて、pngはjpg, pdfなどのフォーマットに保存することができます。
+
+以上、簡単に>>>em:ggplot2<<<の手習い的演習をしました。これらの関数の詳細は>>>em:ggplot2<<<のオンラインリファレンスマニュアル（>>>link:http://had.co.nz/ggplot2/<<<)を見てください。実際、ある程度の利用方法を覚えれば、このオンラインリファレンスマニュアルだけ大体のことはできるようになります。
+
+●世界銀行のData Catalog
+
+先月の報道によると、中国が日本のGDPを抜いて世界第二位の経済大国になったそうです。Bloombergの報道によれば、ドル換算の名目値で2010年の第二四半期までの速報値で、日本が1.288兆ドルに対して、中国が1.338兆ドルだそうです。
+
+http://www.bloomberg.com/news/2010-08-16/china-economy-passes-japan-s-in-second-quarter-capping-three-decade-rise.html
+
+このことについては、何年も前から予想されたことでもあるのであまり驚くべきことでもありませんが、オープン・データを利用して確かめてみることにしましょう。ただし、生憎のこと信頼できるGDPのデータは2008年までのものしかないので、その傾向をみるだけになることをお断りしておきます。
+
+GDPのデータとして各国がのデータが網羅的にまとまっていて、信頼できるものは、世界銀行にあるものか、OECDにあるものか、IMFにあるものかだと思います。
+
+The World Bank Data Catalog
+>>>link:http://data.worldbank.org/data-catalog<<<
+
+Gross Domestic Product (GDP) for OECD member countries
+>>>link:http://stats.oecd.org/Index.aspx?datasetcode=SNA_TABLE1<<<
+
+IMF World Economic Outlook Database
+>>>link:http://www.imf.org/external/pubs/ft/weo/2010/01/weodata/index.aspx<<<
+
+いずれのサイトでもデータをWebインタフェースから「ドリルダウン」する形でもデータを入手することができます。また、GDPデータについてはいずれのサイトも2008年までのデータがストアされています。この中で一番簡単の取り扱えて、一番モダンな問い合わせ実装が行われているのが世界銀行のものです。今回は世界銀行のものを利用します。
+
+>>>img:wbdatabank.jpg<<<
+
+世界銀行の"Data Catalog"は、WDI("the World Development Indicators")というインジケーターをクエリに含めることで、検索を行うデータベースです。WDIはいわばRDBの「テーブル」や「ビュー」にあたります。このWDIには2000を超えるインジケーターが存在します(http://data.worldbank.org/indicator >>>link:http://data.worldbank.org/indicator<<<)。そして、世界銀行の"Data Catalog"はモダンなwebサービスであるRESTインタフェースとしても実装されていることが、データの利用の敷居を極端に下げていると言ってよいでしょう。つまり、HTTPプロトコルを利用でき、RESTを解釈できるシステムなら、誰もが簡単にこのData Catalogを利用できるのです。
+
+Rでこの世界銀行のData CatalogをREST経由で利用するには、>>>em:WDI<<<パッケージを利用します。
+
+WDI: Search and download data from the World Bank's World Development Indicators
+>>>link:http://cran.r-project.org/web/packages/WDI/index.html<<<
+
+>>>em:WDI<<<パッケージはCRANの標準パッケージですので、次のコマンドで簡単にインストールすることができます。
+
+>>>shell
+install.packages("WDI")
+<<<
+
+さて、実際にこの>>>em:WDI<<<を用いて、世界銀行の"Data Catalog"にアクセスし、GDPの米ドルでの名目値、一人当たりのGDPの米ドルでの値、そしてGDPの成長率について、米国、日本、中国、韓国についての比較をしてみたいと思います。以下のコードがそれを実行したものです。
+
+>>>shell
+> library(WDI)
+> library(ggplot2)
+
+> gdp <- WDI(country = c("US", "JP", "CN", "KR"), indicator = "NY.GDP.MKTP.CD", start = 1960, end = 2008)
+> gdppercapita <- WDI(country=c("US", "JP", "CN", "KR"), indicator = "NY.GDP.PCAP.CD", start = 1960, end = 2008)
+> gdpgrowth <- WDI(country=c("US", "JP", "CN", "KR"), indicator ="NY.GDP.MKTP.KD.ZG", start = 1960, end = 2008)
+
+> ggplot(gdp, aes(year, NY.GDP.MKTP.CD, color=country))+geom_line(stat="identity") + xlab("Year") + opts(title="GDP (current US$)") + ylab("")
+> ggsave(file = 'gdp.png', scale = 0.8)
+
+> ggplot(gdppercapita, aes(year, NY.GDP.PCAP.CD, color=country))+geom_line(stat="identity") + xlab("Year") + opts(title = "GDP per capita (current US$)") + ylab("")
+> ggsave(file = 'gdppercapita.png', scale = 0.8)
+
+> ggplot(gdpgrowth, aes(year, NY.GDP.MKTP.KD.ZG, color=country)) + geom_line(stat="identity") + xlab("Year") + opts(title="GDP growth (annual %)")+ylab("")
+> ggsave(file = 'gdpgrowth.png', scale = 0.8)
+<<<
+
+最初に>>>em:WDI<<<とグラフ描画用の>>>em:ggplot2<<<を読み込みます。>>>em:WDI<<<パッケージの使い方は非常に簡単です。単に>>>em:WDI<<<関数を利用し、その引数として>>>em:country<<<、 >>>em: indicator<<<、そして>>>em:start<<<および>>>em:end<<<を指定するだけです。>>>em:country<<<にはデータを入手したい国名をリストで指定し、>>>em: indicator<<<にはWDIのインジケータを指定し、>>>em:start<<<および>>>em:end<<<に検索対象の開始年と終了年を指定します。>>>em: indicator<<<に指定するインジケータをさがすには、Data Bankのインジケーター検索画面(http://data.worldbank.org/indicator/ >>>link:http://data.worldbank.org/indicator/<<<)を利用して一度検索を行ってから、その表示されるURLの最後の部分に見ればよいでしょう。
+
+>>>img:wdiindicator.jpg<<<
+
+今回のGDPの米ドルでの名目値、一人当たりのGDPの米ドルでの値、そしてGDPの成長率に当たるインジケーターは、>>>em:NY.GDP.MKTP.CD<<<、>>>em:NY.GDP.PCAP.CD<<<、>>>em:NY.GDP.MKTP.KD.ZG<<<になります。>>>em:WDI<<<によって入手できたデータは、例えば名目GDPなら以下のようなレイアウトになっています。
+
+>>>shell
+> head(gdp)
+        country NY.GDP.MKTP.CD year iso2c
+1 United States    1.40933e+13 2008    US
+2 United States    1.37416e+13 2007    US
+3 United States    1.31165e+13 2006    US
+4 United States    1.23641e+13 2005    US
+5 United States    1.16309e+13 2004    US
+6 United States    1.09080e+13 2003    US
+<<<
+
+これらの>>>em:WDI<<<からのデータを>>>ggplot<<<で描画して、グラフを保存しているのが、最後の部分のコードです。線グラフを書きたいので、>>>em: geom_line<<<を利用しました。ここで一点注意するのは、>>>em:ggplot<<<関数の引数で入力されている、>>>em:aes<<<の引数です。ここではx軸に>>>em:year<<<を指定し、y軸に>>>em:NY.GDP.MKTP.CD<<<などのインジケーターから取得きる値を指定してプロットするという指示を書いていますが、それと同時に、>>>em:color<<<引数に>>>em:country<<<カラムを指定しています。これは、>>>em:country<<<で指定される国ごとに違う色のプロットをしろという指定です。ここで、名目値でみたドル換算でのGDPのグラフを見てみましょう。
+
+>>> img:gdp.png<<<
+
+ここで見ると分かりますように、>>>em:color = country <<<で指定したように、国別に違う色の系列の線グラフとなり、右にあるレジェンドが自動的に描かれています。この簡単さがまさに>>>em:ggplot2<<<を使う最大のメリットの一つといっていいでしょう。
+
+さてグラフの方ですが、1960年から2008年まで一貫して米国が高い値を取っていることがわかります。日本は1995年まではでこぼこながらも強く成長している様がわかります。しかし、1995年から失速して、その後の状態はご承知の通りです。一方で、中国は1994年以来、力強い成長でをしていて、2008年にはもう一息で日本の名目GDP水準を抜かすということが見て取れると思います。そして、先程の報道にあるように2010の第二四半期で、日本を名目水準値としては抜かしたということです。
+
+それでは次に、一人当たりのインフレ率で調整された実質GDP値をみてみましょう。
+
+>>>img:gdppercapita.png<<<
+
+1980年代後半に日本が米国を抜いていることがわかります。これが「日本の奇跡」だとか「ジャパン・アズ・ナンバーワン」と言われた現象です。ただ、2000年にはいって失速してしまい、米国に抜かされていることもわかります。一方で、中国をみますと、一人当たりのGDPに引き直すと韓国よりもまだまだ低い水準に留まっているということがわかります。これは次のコードで入手した各国の人口を見てみれば当然です。
+
+>>>shell
+> library(ggplot2)
+> library(WDI)
+> pop <- WDI(country = c("US", "JP", "CN", "KR"), indicator = "SP.POP.TOTL", start = 1960, end = 2008)
+> ggplot(pop, aes(year, SP.POP.TOTL, color=country)) + geom_line(stat="identity") + xlab("Year") + opts(title="Population") + ylab("")
+> ggsave(file = 'population.png', scale = 0.8)
+<<<
+
+>>> img:population.png<<<
+
+中国には13億人という膨大な人数をかかえているのです。日本と同じだけの一人当たりのGDPを目指そうと思ったら、今の10倍の水準が必要です。
+
+最後は、参考までに、GDPの成長率についてのグラフを提示します。
+
+>>> img:gdpgrowth.png<<<
+
+ここまで議論してきて、一点申し上げたいことがあります。ここで上げた世界銀行のデータを表示するくらいならば、実はRでプロットするまでもなく、Googleのpublicdata APIを用いて、すぐに表示することはできるということです。Googleのpublicdata APIも世界銀行のWebサービスインタフェースを利用していますので、基本的には同じことをやっていることになります。
+
+http://www.google.com/publicdata?ds=wb-wdi&met=ny_gdp_mktp_cd&tdim=true&dl=en&hl=en&q=world+gdp+statistics#met=ny_gdp_mktp_cd&idim=country:USA:JPN:CHN:KOR
+
+>>>img:gdpGGL.jpg<<<
+
+http://www.google.com/publicdata?ds=wb-wdi&met=ny_gdp_pcap_cd&tdim=true&dl=en&hl=en&q=world+gdp+per+capita+statistics#met=ny_gdp_pcap_cd&idim=country:USA:JPN:CHN:KOR
+
+>>>img:gdppercapitaGGL.jpg<<<
+
+http://www.google.com/publicdata?ds=wb-wdi&met=ny_gdp_mktp_kd_zg&tdim=true&dl=en&hl=en&q=world+gdp+growth+rate+statistics#met=ny_gdp_mktp_kd_zg&idim=country:USA:JPN:CHN:KOR
+
+>>>img:gdpgrowthGGL.jpg<<<
+
+しかし、Rでデータの図示・可視化を行うメリットは、webサービスAPIを公開していないデータソースを利用できることはもちろんですが、それ以上にやはりデータ解析、統計解析ができるという点があります。その例を次に示したいと思います。
+
+●Wikileaksのアフガンダイアリー
+
+
+
+
+●次回について
+
+それでは、二週間後にまたお目にかかりましょう。
+
+

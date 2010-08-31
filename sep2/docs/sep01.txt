@@ -197,7 +197,9 @@ install.packages("WDI")
 
 >>> img:gdpgrowth.png<<<
 
-ここまで議論してきて、一点申し上げたいことがあります。ここで上げた世界銀行のデータを表示するくらいならば、実はRでプロットするまでもなく、Googleのpublicdata APIを用いて、すぐに表示することはできるということです。Googleのpublicdata APIも世界銀行のWebサービスインタフェースを利用していますので、基本的には同じことをやっていることになります。
+以上のように、RESTインタフェースを実装されているオープン・データは簡単にデータを入手でき、データを加工する手間も必要なく、Rでスムーズに利用できることがわかったと思います。
+
+と、ここまで議論してきて、一点申し上げたいことがあります。ここで上げた世界銀行のデータを表示するくらいならば、実はRでプロットするまでもなく、Googleのpublicdata APIを用いて、すぐに表示することができるということです。Googleのpublicdata APIも世界銀行のWebサービスインタフェースを利用していますので、基本的には同じことをやっていることになります。
 
 http://www.google.com/publicdata?ds=wb-wdi&met=ny_gdp_mktp_cd&tdim=true&dl=en&hl=en&q=world+gdp+statistics#met=ny_gdp_mktp_cd&idim=country:USA:JPN:CHN:KOR
 
@@ -213,10 +215,66 @@ http://www.google.com/publicdata?ds=wb-wdi&met=ny_gdp_mktp_kd_zg&tdim=true&dl=en
 
 しかし、Rでデータの図示・可視化を行うメリットは、webサービスAPIを公開していないデータソースを利用できることはもちろんですが、それ以上にやはりデータ解析、統計解析ができるという点があります。その例を次に示したいと思います。
 
-●Wikileaksのアフガンダイアリー
+●Wikileaksのアフガン戦争ダイアリー
 
+「オープン・データ的」イベントとして最近大きかったものは、今年の7月25日にWikileaksが公開した、アフガン戦争ダイアリー(Afgan War Diary)だと思います。これはいままで数々の機密ファイルや機密映像の曝露を行ってきた民間団体Wikileaksが、アフガニスタンの駐留米軍の戦闘レポートを記録したもので、2004年から2009年の6年間に渡る76,900件のレコードから構成されています。
 
+Afghan War Diary, 2004-2010
+>>>link:http://www.wikileaks.org/wiki/Afghan_War_Diary,_2004-2010<<<
 
+上記のサイトには、HTML, CSV, SQL, KMLファイルなどそのデータが誰でもダウンロードするこができます。
+
+筆者もこのデータをダウンロードしてRにて解析を試みていましたが、同時にNew York大学の政治学の大学院生であるDrew Conway氏が同じデータを解析した結果とコードを自身のブログにて公開しました。そしてその後もConway氏は勢力的に解析活動を続け、以下のような一連のブログ記事を生み出しました。
+
+http://www.drewconway.com/zia/?p=2226
+http://www.drewconway.com/zia/?p=2234
+http://www.drewconway.com/zia/?p=2268
+http://www.drewconway.com/zia/?p=2295
+http://www.drewconway.com/zia/?p=2324
+
+ここでは、Conway氏の解析をベースに、wikileaksのデータを図示・可視化するとともに、筆者も同時にやっていたベンフォードの法則への割り当てとカイ二乗適合度検定をしてみたいと思います。利用するコードの前半のデータ操作の部分は、筆者のものより洗練されているConway氏のコードを使用させていただき、後半の解析部分は筆者のコードをConway氏のコードにマージする形で示したいと思います。Conway氏には、電子メイルにてディスカッションをさせてもらいました。ここにConway氏に感謝いたします。
+
+>>>shell
+library(ggplot2)
+setwd("/Users/yutakashino/Dropbox/sandboxDrop/@IT/temp/")
+afg<-read.csv("afg.csv",stringsAsFactors=FALSE)
+
+colnames(afg)<-c("ReportKey","DateOccurred","Type","Category","TrackingNumber","Title","Summary","Region","AttackOn",
+    "ComplexAttack","ReportingUnit","UnitName","TypeOfUnit","FriendlyWIA","FriendlyKIA","HostNationWIA","HostNationKIA",
+    "CivilianWIA","CivilianKIA","EnemyWIA","EnemyKIA","EnemyDetained","MGRS","Latitude","Longitude","OriginatorGroup",
+    "UpdatedByGroup","CCIR","Sigact","Affiliation","DColor","Classification")
+
+afg$DateOccurred <- as.Date(afg$DateOccurred)
+afg$Region[grep("RC ",afg$Region,fixed=T,invert=T)]<-"UNKNOWN"
+afg$Region<-as.factor(afg$Region)
+
+event <- ggplot( afg, aes(x = DateOccurred) ) + stat_bin( aes( y = ..count.., fill = AttackOn ), binwidth=30 ) + facet_wrap( ~Region ) + 
+    opts( title = "Monthly Event Report (Region and Attack Target)" ) + xlab( "Date ") + ylab( "Report Counts" ) + 
+    scale_fill_manual( values = c( "darkred", "darkblue", "darkgreen", "orange" ), name = "Who Attacked" ) + scale_x_date( major = "years", minor = "months" )
+ggsave("wikileaks_event.png", plot = event, width=10, height=5)
+
+weeklyCount<-cbind(table(cbind(format.Date(afg$DateOccurred,"%Y %W"))))
+
+pullLeaddigit<-function(x) {
+    as.numeric(substring(formatC(x, format = 'e'), 1, 1))
+} 
+
+digits <- table(pullLeaddigit(weeklyCount))
+digits <- cbind(digits)
+digits <- as.data.frame(digits)
+colnames(digits) <- "digitCount"
+digits$digitCount <- digits$digitCount/sum(digits$digitCount)
+
+dbenford <- function(x) {
+    return(log10((1+x)/x))
+}
+
+benford <- ggplot(digits, aes(x=1:9, y=digitCount)) + geom_path(aes(colour = "observation")) + geom_point(aes(colour = "observation")) + stat_function(fun = dbenford, aes(colour = "theory")) + scale_colour_manual( values = c("observation" = "orange", "theory" = "blue")) + xlab("Digit") + ylab("Count Density") + opts(title="Applying Benford's law to Wikileaks Data") 
+ggsave("wikileaks_benford.png", plot=benford, width=7, height=7)
+
+chisq.test(x= digits$digitCount, y = dbenford(1:9))
+
+<<<
 
 ●次回について
 

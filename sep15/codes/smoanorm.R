@@ -1,0 +1,6 @@
+library(ggplot2)
+sumo <- data.frame(x=c(0:15), win=c(0, 0, 6, 13, 24, 38, 53, 37, 102, 54, 10, 17, 17, 7, 5, 3))
+dsumo <- function(x) sum(sumo$win)*dbinom(x, size=length(sumo$x), prob=1/2)
+sumo1 <- data.frame(x = sumo$x, win_obs = sumo$win, win_theory = dsumo(c(0:15)))
+ggplot(data=melt(sumo1, id='x'), aes(x=x, y=value, colour=variable)) + geom_path()
+ggsave("sumoanom.png")

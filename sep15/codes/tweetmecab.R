@@ -1,0 +1,6 @@
+library(twitteR)
+sess <- initSession('yutakashino','iamthet1!')
+sea <- searchTwitter("新宿")
+adf <- (text = c(sea[[1]]@text, sea[[2]]@text, sea[[3]]@text))
+library(RMeCab)
+summary(sapply(RMeCabDF(adf, 1), length))

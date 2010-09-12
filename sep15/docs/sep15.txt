@@ -1,0 +1,302 @@
+>>>filepath:/fcoding/articles/<<<
+>>>rensai_name:statbushknife<<<
+>>>rensai_number:02<<<
+>>>date:2010/8/04<<<
+>>>title:第5回 インターリュード: TwitterとR<<<
+>>>abs
+（編集部）<<<
+
+●今回の前口上
+
+この連載は@ITの連載でもかなり毛色の違う内容です。それにも関わらず前回までの4回は、統計的検定をいきなり導入したり、日本政府や世界銀行の経済統計にアクセスしてみたり、更にはWikiLeaksの暴露データを統計解析してみたりと、かなりハードコアな連載に走ってしまいました。
+
+第4回の「あとがき」では同じ路線で突っ走ろうということを申し上げていたのですが、今回は間奏（インタリュード）として、「より@ITらしい」IT寄りの話題を取り上げたいと思います。
+
+●TwitterとR
+
+Twitterの人気は世界的にまだまだ続いているようです。8月後半に発表された6月分の統計(>>>lnk:http://www.comscore.com/Press_Events/Press_Releases/2010/8/Indonesia_Brazil_and_Venezuela_Lead_Global_Surge_in_Twitter_Usage<<<)によりますと、現在はインドネシアやブラジル、ベネゼエラなどの新興国の伸びがすごいそうです。
+
+>>>img:twitterstats1006.jpg<<<
+
+日本でもまだ17%という急成長を続けています。米国ではTwitterの成長が止まったという論考が何度もでていますが、実はモバイルを含めた統計を見ると、こちらもまだまだ伸び代が十分なようです。
+
+さて、その人気のTwitterですが、このように利用するユーザの数や利用頻度が大きくなってくると、だんだんと日常生活に欠くことのできない社会資本かつ社会関連資本のインフラストラクチャーのような存在になってきていると言えるでしょう。個人の嗜好や選好、社会の現在のトレンドなどが格納されている、簡易的なパーソナルデータベースと考えることもできそうです。そうなると、Twitterをデーターマイニングやデータ解析に利用し、有用な情報を得ることができないか、という考えが出てくることと思います。今回の記事では、ハードコアなデータマイニングやデータ解析は行いませんが、その解析にいたるまでのアプローチを提示することを目的とします。
+
+Twitterをデータベースとして利用し、Rを使ってそのデータ解析をするためには、RとTwitterを連携させる必要があります。そのための、パッケージがCRANにあります。それが>>>em:twitteR<<<です。>>>em:twitteR<<<はTwitterのREST API(>>>link:http://dev.twitter.com/doc<<<)をラッピングしているパッケージで、これを利用するとRをTwitterのクライアントにすることができます。
+
+twitteR
+http://cran.r-project.org/web/packages/twitteR/index.html
+
+この>>>em:twitteR<<<を利用して、Twitterから引き出せる情報の可視化とテキストマイニングのイントロダクションを行いたいと思います。
+
+まず>>>em:twitteR<<<のインストールをします。Rの対話プロンプトから>>>em:install.packages<<<関数を呼び出します。CRANサイトについては、例えば"Japn (Tukuba)"を選択してください。
+
+>>>shell
+> install.packages("twitteR")
+<<<
+
+今回はこの>>>em:twitteR<<<以外にも、>>>em:igraph<<<と>>>em:RMeCab<<<を利用します。同様にここでインストールしてしまいましょう。ただし、MacやLinuxをお使いの方は、>>>em:RMeCab<<<については、>>>em:install.packages<<<関数でインストールできません。これは、後ほど記述しますが、ダウンロードサイトよりバイナリファイルをダウンロードして、ローカルディスクからインストールすることになります。
+
+>>>shell
+> install.packages("igraph")
+> install.packages("RMeCab")
+<<<
+
+●friendsとfollowersを可視化する
+
+さて、この>>>em:twitteR<<<の利用方法ですが、普通のクライアントと同じように、Twitterのアカウントが必要です。まず、クライアントをスタートするためにセッションを開始する必要があります。それには>>>em:initSession<<<関数を利用します。
+
+>>>shell
+> library(twitteR)
+> session <- initSession("YOURNAME", "YOURPASS")
+> session
+An object of class “CURLHandle”
+Slot "ref":
+<pointer: 0xa50000>
+>>>
+
+>>>em:initSession<<<関数から返されるのはUnixのCURLコマンドをラップした"CURLHandle"オブジェクトで、>>>em:twitteR<<<の関数を利用するときにこのオブジェクトを引数に渡してやる必要があります。
+
+ここで自分や他の人間のfollowingしている人物をターゲットとして、そのターゲットのリストを得るには>>>em:userFriends<<<を利用します。第一引数には調べたいアカウントをストリングか>>>twitteR<<<のuserオブジェクトを入れ、第二引数には最大値、第三引数には先程取得したセッションオブジェクトを入れます。ユーザのリストが返されます。ここで注意点ですが、第二引数のnを100以下にしても100個のリストが返るような仕様になっているようです。
+
+>>>shell
+> target <- "hatoyamayukio"
+> friends.obj <- userFriends(target, n = 100, session)
+> head(friends.obj)
+[[1]]
+[1] "barthkoch"
+
+[[2]]
+[1] "rimaruko"
+
+[[3]]
+[1] "sean_fuji"
+
+[[4]]
+[1] "gu_cci"
+
+[[5]]
+[1] "usavich3"
+
+[[6]]
+[1] "amanecs"
+<<<
+
+followersを取得するには、>>>em:userFollowers<<<を利用すれば、同様に取得できます。さて、ここでターゲットのfollowingとfollowerのリストを取得し、そのデータをグラフ表現で視覚化したいと思います。そのために、follwingとfollwersのアカウント名を一つのデータフレームに格納します。>>>em:userFriends<<<や>>>em:userFollowers<<<から返されるリストオブジェクトの中身を見てみると以下のようになっています。
+
+>>>shell
+> str(friends.obj)
+List of 100
+ $ :Formal class 'user' [package "twitteR"] with 14 slots
+  .. ..@ description   : chr ""
+  .. ..@ statusesCount : num 17
+  .. ..@ followersCount: num 20
+  .. ..@ favoritesCount: num(0) 
+  .. ..@ friendsCount  : num 80
+  .. ..@ url           : chr(0) 
+  .. ..@ name          : chr "barthkoch"
+  .. ..@ created       : chr "Thu Aug 20 21:03:33 +0000 2009"
+  .. ..@ protected     : logi FALSE
+  .. ..@ verified      : logi FALSE
+  .. ..@ screenName    : chr "barthkoch"
+  .. ..@ location      : chr "Brazil"
+  .. ..@ id            : num 67424072
+  .. ..@ lastStatus    :Formal class 'status' [package "twitteR"] with 10 slots
+...
+<<<
+
+どうやら、>>>em:screenName<<<がユーザのアカウント名のようです。試しに一つ目のオブジェクトだけを取り出して、>>>screenName<<<関数として適用してみましょう。
+
+>>>shell
+> screenName(friends.obj[[1]])
+[1] "barthkoch"
+<<<
+
+これで、>>>em:userFriends<<<や>>>em:userFollowers<<<から返されるリストオブジェクトからアカウント名を取り出す方法がわかりました。これを全てのリストに適用し、一つのデータフレームに統合するには次のようにします。followersのリストもついでに取得しておきました。
+
+>>>shell
+> followers.obj <- userFollowers(target, n = 100, session)
+> friends <- sapply(friends.obj, screenName)
+> followers <- sapply(followers.obj, screenName)
+> relationsdf <- merge(data.frame(User = target, Follower = friends), 
++     data.frame(User = followers,  Follower = target), 
++     all = T)
+> head(relationsdf)
+           User  Follower
+1 hatoyamayukio  178REIJI
+2 hatoyamayukio      3hit
+3 hatoyamayukio  921_u3u3
+4 hatoyamayukio  a_ikenag
+5 hatoyamayukio ace_champ
+6 hatoyamayukio    achora
+> tail(relationsdf)
+               User      Follower
+195 YoshidaFumitaka hatoyamayukio
+196   yoshitada9646 hatoyamayukio
+197   ysugihara1221 hatoyamayukio
+198      yuki70424b hatoyamayukio
+199    yunikonnyaku hatoyamayukio
+200  yutakakanagawa hatoyamayukio
+<<<
+
+ここで、followingリストオブジェクトとfollowersリストオブジェクトに>>>em:screenName<<<を一括適用するために>>>em:sapply<<<を利用しました。また、データフレームを作成するには>>>em:data.frame<<<、作成した二つのデータフレームを統合するには>>>em:mearge<<<を利用しました。
+
+>>>em:head<<<と>>>em:tail<<<で最初のほうと最後のほうのUser-Follower関係をみますと、正常にデータフレームができているようです。次はこの視覚化です。これはUser -> Follower関係になっている>>>em:方向づきグラフ<<<です。Rでこれを視覚化するには>>>em:igraph<<<パッケージを利用するのが一番手っ取り早いです。
+
+igraph
+http://cran.r-project.org/web/packages/igraph/index.html
+
+>>>em:igraph<<<パッケージを利用するしてグラフを描画するには、通常のデータフレームを頂点と辺の属性を付け加えたデータフレームに変換擦る必要があります。これを行うのが>>>em:graph.data.frame<<<です。
+
+> library(igraph)
+> g <- graph.data.frame(relationsdf, directed = T)
+> g
+Vertices: 201 
+Edges: 200 
+Directed: TRUE 
+Edges:
+                                            
+[0]   'hatoyamayukio'   -> '178REIJI'       
+[1]   'hatoyamayukio'   -> '3hit'           
+[2]   'hatoyamayukio'   -> '921_u3u3'       
+[3]   'hatoyamayukio'   -> 'a_ikenag'
+...
+<<<
+
+今回は>>>em:graph.data.frame<<<に>>>em:directed = T<<<という方向付けオプションを指定したので、User -> Follower関係が表現できました。この>>>em:g<<<が>>>em:igraph<<<で利用するデータフレームですが、頂点オブジェクトと辺オブジェクトを取り出すには、>>>em:V<<<と>>>em:E<<<を利用します。頂点のオブジェクトの名前を取り出すには>>>em:$name<<<により取り出します。
+
+>>>shell
+> head(V(g))
+Vertex sequence:
+[1] "20100912pm3"   "24KinKiKids51" "313so"         "9_nanatuki"    "Airi0419"      "ak3161"       
+> head(E(g))
+Edge sequence:
+                                  
+[1] hatoyamayukio -> 3hit         
+[2] hatoyamayukio -> 921_u3u3     
+[3] hatoyamayukio -> a_ikenag     
+[4] hatoyamayukio -> ace_champ    
+[5] hatoyamayukio -> achora       
+[6] hatoyamayukio -> ahoneko_tom 
+
+> head(V(g)$name)
+[1] "hatoyamayukio" "20100912pm3"   "24KinKiKids51" "313so"         "9_nanatuki"    "Airi0419"   
+
+> V(g)$label
+NULL
+
+> V(g)$label <- V(g)$name
+<<<
+
+最後のコードは、グラフを書いたときに記述される頂点のラベル>>>em:$label<<<に>>>em:$name<<<属性にあるアカウント名をそのまま入れました。これでグラフを描く準備をが整いました。グラフを描くのは実はすごく容易で、一番簡単なグラフは>>>em:plot<<<命令をグラフデータフレームに適用するだけです。
+
+>>>img:igraphplot.jpg<<<
+
+しかし、100以上の頂点オブジェクトがある場合、これではよくわかりません。そこで比較的高機能の>>>em:tkplot<<<を利用してみます。これはtkグラフィックライブラリ上に作成されたグラフプロットライブラリです。"Layout"メニューからグラフの配置を変更することができます。
+
+>>>shell
+> tkplot(g)
+<<<
+
+例えば、Kawada-Kawaiアルゴリズムを選んでプロットすると以下のようなグラフになります。
+
+>>>img:igraphtkplot.jpg<<<
+
+この>>>em:tkplot<<<で描かれたグラフ上のオブジェクトはマニュアルで配置が変更できます。また辺を選べばその辺がハイライトしますし、頂点を選べば頂点がハイライトし、頂点間の関係がある程度わかるようになっています。
+
+これが>>>em:twitteR<<<から取得したfollwings, followersのリストをグラフ化し、視覚化する一連の手順です。
+
+●Twitterテキストマイニングの入門
+
+次に>>>em:twitteR<<<を用いて行いたいのは、tweetを取得しそれをテキストマイニングするまでの一連の手順です。テキストマイニング自体は非常に大きな分野ですので、ここでは述べませんが、最低限の準備として取得したtweetに対して形態素解析を行い、その形態素の数を数えることをやりましょう。
+
+tweetを取得するには、今回はTwiiter検索のAPIを利用します。そのために、>>>em:twitteR<<<の>>>em:searchTwitter<<<を利用します。意味があるかどうかはここでは置いておいて、例えば、「素敵」と「ステキ」が含まれているtweetの形態素数の比較をしてみましょう。まずは、tweetを検索して取得します。
+
+>>>shell
+> search1 <- searchTwitter("素敵", n = 100, session)
+> search2 <- searchTwitter("ステキ", n = 100, session)
+> tweet1 <- sapply(search1, text)
+> tweet2 <- sapply(search2, text)
+> head(tweet1)
+[1] "PLAZAでミントを買って、H&amp;Mでチャームブレスレットとウールハット買った;) お買い物大好き!! 今日素敵な物が沢山あったので、また改めてお買い物しに行きます"
+[2] "@pic2a ぴっかさん仕事はやい＞///////＜素敵！そこに痺れる憧れルゥウウ！！！そして真田主従と、第二衣装の真田ですね！ﾊﾔｸｶｹﾖ！"                              
+[3] "@abcchatan素敵な風景ありがとう。フォローありがとうございます！フォロー返させていただきました･ﾟ･(ノω；`)･ﾟ･どうぞよろしくお願いします(｀・ω・´) 　"    
+[4] "まだまだ会場は聞きたい雰囲気満々ですが時間切れ終了です。川口先生、古川知事素敵な時間をありがとうございました！ #sagahayabusa"                            
+[5] "@hanauruotoko ブログ見ました～。素敵なご活動ですね♪勉強だけじゃなくこういう事って沢山子供時代に経験したりしたいですよね♪"                              
+[6] "@nananyan00 昼公演では右側によくいましたね(*^□^*)ジャケットプレイ素敵でした♪"    
+<<<
+
+このtweetを形態素解析する必要があるのですが、ここではオープンソースの形態素解析エンジンである>>>em:MeCab<<<を利用したいと思います。
+
+MeCab: Yet Another Part-of-Speech and Morphological Analyzer
+http://mecab.sourceforge.net/
+
+Rで>>>em:MeCab<<<を利用するためには、>>>em:RMeCab<<<パッケージを利用するのが一番手早くできます。
+
+>>>em:RMeCab<<<のインストール及び>>>em:MeCab<<<のインストール方法については、>>>em:RMeCab<<<の作者である石田基広さんの以下のページを参考にしてください。Windowsの場合はCRANから>>>em:install.packages<<<関数でインストールができます。
+
+RMeCab: RとLinuxと...
+http://rmecab.jp/wiki/index.php?RMeCab
+
+しかし、Mac版やLinux版をインストールする場合は、上記のサイトの情報を利用ください。その際に、一点だけ注意点があります。Rのバージョン、MeCabのバージョンそしてRMeCabのバージョンはかなりキツク結びついているようである、ということです。バージョンの不整合に気をつけてください。筆者のR2.10.1、MeCab0.96の環境では、RMeCab0.9xは動作しませんでした。MeCabのバージョンを0.98に上げ、RMeCab0.87にしたら動作するようになりました。ただし、最新版のR2.11.x、MeCab0.98、RMeCab0.91の組み合わせは問題なく動作しました。念のために旧バージョンのRMeCabをダウンロードできるページを以下に掲げておきます。
+
+http://groups.google.co.jp/group/rmecab/files
+
+RMeCabの関数一覧については以下の石田さんのページを参照してください。
+
+http://rmecab.jp/wiki/index.php?RMeCabFunctions
+
+以下ではMeCabとRMeCabが正常にインストールされたとして話を進めます。>>>em:twitteR<<<の>>>em:searchTwitter<<<で取得したtweetを形態素解析をするためには、>>>em:RMeCab<<<の>>>em:RMeCabDF<<<を利用します。この関数はデータフレームとしてテキストを取ったら形態素をリストとして返す仕様となっています。まず、先程の検索したtweetをデータフレームにし、それを>>>em:RMeCabDF<<<にいれるところまでを見てみます。
+
+>>>shell
+> tdf1 <- data.frame(tweet = tweet1)
+> tdf2 <- data.frame(tweet = tweet2)                                                              
+> library(RMeCab)
+> summary(sapply(RMeCabDF(tdf1, 1), length))
+   Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
+   6.00   26.00   36.50   38.96   51.00   72.00 
+> summary(sapply(RMeCabDF(tdf2, 1), length))
+   Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
+   5.00   18.00   29.00   31.64   45.00   89.00 
+> RMeCabDF(tdf1, 1)
+[[1]]
+          名詞           助詞           名詞           助詞           動詞           助詞           記号 
+       "PLAZA"           "で"       "ミント"           "を"         "買っ"           "て"           "、" 
+          名詞           名詞           名詞           名詞           名詞           助詞           名詞 
+           "H"            "&"          "amp"            ";"            "M"           "で"     "チャーム" 
+          名詞           助詞           名詞           名詞           動詞         助動詞           名詞 
+"ブレスレット"           "と"       "ウール"       "ハット"         "買っ"           "た"           ";)" 
+        接頭詞           名詞           名詞           名詞           名詞           名詞         助動詞 
+          "お"       "買い物"       "大好き"           "!!"         "今日"         "素敵"           "な" 
+          名詞           助詞           副詞           動詞         助動詞           助詞           記号 
+          "物"           "が"         "沢山"         "あっ"           "た"         "ので"           "、" 
+        接続詞           副詞         接頭詞           名詞           動詞           助詞           動詞 
+        "また"       "改めて"           "お"       "買い物"           "し"           "に"         "行き" 
+        助動詞 
+        "ます" 
+...
+<<<
+
+形態素がリストとしてかえってきますので、その数を数えるには、データフレームの全要素に>>>em:length<<<関数を>>>em:sapply<<<関数で適用すればよいだけです。 最後にその>>>em:summary<<<をとれば、平均の形態素数や最大要素などを得ることができます。
+
+>>>shell
+> summary(sapply(RMeCabDF(tdf1, 1), length))
+   Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
+   6.00   26.00   36.50   38.96   51.00   72.00 
+> summary(sapply(RMeCabDF(tdf2, 1), length))
+   Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
+   5.00   18.00   29.00   31.64   45.00   89.00 
+<<<
+
+これを見ると、最大形態素数のtweetは「ステキ」にあるのですが、「ステキ」より「素敵」のほうがメジアンも算術平均も大きくなっています。まあ、一瞬だけの検索で、しかもサンプル数が100程度なので、実際のところはなんとも言えませんが、「ステキ」より「素敵」のほうが丁寧な言葉づかいをしがちなので形態素数が大きくなる傾向があるかもしれない、という仮説を立てても問題はなさそうです。
+
+このようにTwitterから直接テキストマイニングが可能になる様を体感できれば、この稿の目的は達成したかと思います。
+   
+最後に、Rを利用したテキストマイニングの入門書については日本語で既に良書が存在します。これ以上の入門的解析を行い肩は、以下の二つの本を参考になさってください。
+
+Rによるテキストマイニング入門　石田基広 森北出版
+テキストデータの統計科学入門　金明哲　岩波書店
+
+●次回について
+
+次回はまた、オープンソースのRを利用して、オープンデータにアクセスし、オープンアイディアの活用したネタをお届けしようと思います。それでは、また二週間後に会いましょう。

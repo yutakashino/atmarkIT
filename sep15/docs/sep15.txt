@@ -35,11 +35,10 @@ http://cran.r-project.org/web/packages/twitteR/index.html
 > install.packages("twitteR")
 <<<
 
-今回はこの>>>em:twitteR<<<以外にも、>>>em:igraph<<<と>>>em:RMeCab<<<を利用します。同様にここでインストールしてしまいましょう。ただし、MacやLinuxをお使いの方は、>>>em:RMeCab<<<については、>>>em:install.packages<<<関数でインストールできません。これは、後ほど記述しますが、ダウンロードサイトよりバイナリファイルをダウンロードして、ローカルディスクからインストールすることになります。
+今回はこの>>>em:twitteR<<<以外にも、>>>em:igraph<<<と>>>em:RMeCab<<<を利用します。同様にここでインストールしてしまいましょう。ただし、>>>em:RMeCab<<<については、>>>em:install.packages<<<関数でインストールできません。これは、後ほど記述しますが、ダウンロードサイトよりバイナリファイルをダウンロードして、ローカルディスクからインストールすることになります。
 
 >>>shell
 > install.packages("igraph")
-> install.packages("RMeCab") #Windows環境のみ
 <<<
 
 ●friendsとfollowersを可視化する
@@ -242,7 +241,7 @@ http://mecab.sourceforge.net/
 RMeCab: RとLinuxと...
 http://rmecab.jp/wiki/index.php?RMeCab
 
->>>em:RMeCab<<<のインストールについて、この稿の最初で述べましたように、Windowsの場合はCRANから>>>em:install.packages<<<関数でインストールができます。しかし、Mac版やLinux版をインストールする場合は、上記のサイトにある情報を利用してバイナリファイルをダウンロードして、ローカルディスクからインストールする必要があります。その際に注意点があります。それは、Rのバージョン、MeCabのバージョンそしてRMeCabのバージョンはかなりキツク結びついているようなのでバージョンの不整合に気をつけてください、ということです。筆者のR2.10.1、MeCab0.96の環境では、RMeCab0.9xは動作しませんでした。MeCabのバージョンを0.98に上げ、RMeCab0.87にしたら動作するようになりました。ただし、最新版のR2.11.x、MeCab0.98、RMeCab0.91の組み合わせは問題なく動作しました。念のために旧バージョンのRMeCabをダウンロードできるページを以下に掲げておきます。
+>>>em:RMeCab<<<のインストールについては、上記のサイトにある情報を利用してバイナリファイルをダウンロードして、ローカルディスクからインストールする必要があります。その際に注意点があります。それは、Rのバージョン、MeCabのバージョンそしてRMeCabのバージョンはかなりキツク結びついているようなのでバージョンの不整合に気をつけてください、ということです。筆者のR2.10.1、MeCab0.96の環境では、RMeCab0.9xは動作しませんでした。MeCabのバージョンを0.98に上げ、RMeCab0.87にしたら動作するようになりました。ただし、最新版のR2.11.x、MeCab0.98、RMeCab0.91の組み合わせは問題なく動作しました。念のために旧バージョンのRMeCabをダウンロードできるページを以下に掲げておきます。
 
 http://groups.google.co.jp/group/rmecab/files
 

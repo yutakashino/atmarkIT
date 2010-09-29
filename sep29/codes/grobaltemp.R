@@ -10,6 +10,10 @@ summary(gtemp)
 gridded(gtemp) <- TRUE
 summary(gtemp)
 png(file="grobalSummerAnomaly.png")
+library(maptools)
+data(wrld_simpl)
+plot(wrld_simpl, add = T)
+
 anomimage <- as.image.SpatialGridDataFrame(gtemp["anom"])
 library(fields)
 image.plot(anomimage, nlevel=24)

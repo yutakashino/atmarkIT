@@ -1,0 +1,312 @@
+>>>filepath:/fcoding/articles/<<<
+>>>rensai_name:statbushknife<<<
+>>>rensai_number:02<<<
+>>>date:2010/9/29<<<
+>>>title:第6回 夏の異常気象をオープン・データで確認<<<
+>>>abs
+（編集部）<<<
+
+●今回の前口上
+
+今年は秋分の日を境に涼しくなり一気に秋がきました。「暑さ寒さも彼岸まで」という言葉を今年ほど感じた年はなかったと思います。秋分の日までは、気温と湿度が高く、暑さのために生活することが本当に大変な夏でした。それがどれだけ大変だったかというのを、過去のデータを遡り、地球全体ではどうだったのか、ということをオープン・データを利用してRで検証していきましょう。ここで予めお断りすることがあります。筆者は気候学や気象学を専門として学んだことがないので、今回の内容にとんでもない過ちや勘違いをしている可能性があります。その場合は、お手数ですがご遠慮無くご指摘くださると幸いです。
+
+●夏の異常気象：東京の気温データ
+
+気象データといえば、気象庁です。気象庁の以下の気象統計情報サイトには、過去のデータがあります。
+
+気象庁：ホーム > 気象統計情報 > 過去の気象データ検索　
+http://www.data.jma.go.jp/obd/stats/etrn/index.php
+
+>>>img:jma1.jpg<<<
+
+観測地点を選び、データの属性を選択すれば、ドリルダウン形式で気象データを表示できます。ここでは、東京の気温データを月別に一日の平均をとったデータ「観測開始からの月ごとの値」を利用することにしましょう。
+
+幸いなことに日平均気温ですと1876年から現在までの値が手に入ります。
+
+>>>img:jma2.jpg<<<
+
+東京の月ごとの日平均気温過去データ>>>link:http://www.data.jma.go.jp/obd/stats/etrn/view/monthly_s3.php?prec_no=44&prec_ch=%93%8C%8B%9E%93s&block_no=47662&block_ch=%93%8C%8B%9E&year=&month=&day=&view=a1<<<
+
+残念なことに、これはHTMLとして表示されているだけでなので、このままでは再利用が大変です。こういう時は表計算ソフトを用いてテーブル部分をコピー＆ペーストでデータとして再利用できる形にする方法が一番早いと思います。筆者はこういう作業には一番副作用がすくない表計算ソフトである、OpenOfficeの表計算アプリケーションを利用することが多いです。それでは、表の部分だけを選択し、OpenOfficeの新しいスプレットシートにコピー＆ペーストで持っていくことにします。
+
+>>>img:toSpreadsheet.jpg<<<
+
+これをCSVファイルに保存すれば、Rで利用できる東京の月別日平均気温データを入手できたことになります。参考までにこのデータをいつものGoogle DocsにCSVファイルとしてアップロードしておきました。
+
+http://spreadsheets.google.com/pub?key=0AlBuJgqcP5f3dDNCY0lFSEVJQXhDOWt5YkUtNTdLUHc&hl=en&output=csv
+
+まず、この日平均気温データを年でプロットしたものを、月別のファセットグラフにしてみましょう。ファセットグラフを書きたいので、>>>em:ggplot2<<<パッケージを今回も利用します。まずは>>>em:read.csv<<<で日平均気温CSVデータをを読み込んで、データの形を見ます。
+
+>>>shell
+> library(ggplot2)
+> data <- read.csv("http://spreadsheets.google.com/pub?key=0AlBuJgqcP5f3dDNCY0lFSEVJQXhDOWt5YkUtNTdLUHc&hl=en&output=csv", > > header=TRUE)
+> head(data)
+  year Jan Feb Mar  Apr  May  Jun  Jul  Aug  Sep  Oct  Nov Dec Average
+1 1876 1.6 3.4 8.1 12.2 16.9 18.4 24.3 26.7 22.6 14.8  9.1 4.8    13.6
+2 1877 2.9 3.3 6.0 13.5 16.4 21.9 26.2 25.7 21.1 15.6  9.3 5.7    14.0
+3 1878 2.1 2.2 7.0 11.4 18.0 19.9 25.9 24.4 22.6 15.5  9.5 5.0    13.6
+4 1879 3.1 5.2 7.9 12.2 17.9 21.4 26.1 26.5 21.0 14.7  9.4 7.8    14.4
+5 1880 2.3 5.6 8.2 12.1 17.4 19.7 24.1 25.3 22.1 16.4  9.9 3.6    13.9
+6 1881 2.0 3.4 5.1 11.3 17.0 21.2 23.8 26.5 22.4 15.5 10.8 4.1    13.6
+<<<
+
+これをみると行が年別で、列が月別および年平均の気温データとなっていることがわかります。>>>em:ggplot2<<<では月別のファセットにするばあい、月を表すデータを一つのカラムに「溶かし込んで」一緒にする必要があります。これを実行するのが>>>em:melt<<<関数で、その引数>>>em:id<<<には>溶かしこんで一緒に>>>em:しない<<<カラムを指定します。>>>em:melt<<<を利用してみたのが次のコードです。
+
+>>>shell
+> data1 <- melt(data, id=c("year", "Average"))
+> head(data1)
+  year Average variable value
+1 1876    13.6      Jan   1.6
+2 1877    14.0      Jan   2.9
+3 1878    13.6      Jan   2.1
+4 1879    14.4      Jan   3.1
+5 1880    13.9      Jan   2.3
+6 1881    13.6      Jan   2.0
+> tail(data1)
+     year Average variable value
+1615 2005    16.2      Dec   6.4
+1616 2006    16.4      Dec   9.5
+1617 2007    17.0      Dec   9.0
+1618 2008    16.4      Dec   9.8
+1619 2009    16.7      Dec   9.0
+1620 2010      NA      Dec    NA
+<<<
+
+これをみると>>>em:year<<<カラムと>>>em:Average<<<カラム以外は、>>>em:value<<<カラムに集めらられ、その識別子として>>>em:variable<<<カラムが新たに追加されていことがわかります。これをプロットしてみましょう。
+
+>>>shell
+> ggplot(data=data1, aes(x = year, y = value)) + geom_path() + facet_wrap( ~variable )
+<<<
+
+東京の日平均気温月別ファセットグラフ
+>>>img:tokyotemperture.png<<<
+
+これを眺めるとすぐに分かるのは、100年前と今を較べてみると3-5度ほど絶対温度が上昇しているようなトレンドだということです。これが、都市化によるヒートアイランド現象を表すものなのか、それとも地球温暖化を表すものなのか、はたまた100年前から現在に較べて単に季節が少しずつずれているので月ごとに見たときに見かけ上働いたのもなのか、よくわかりません。気温の時系列データは非常に取り扱いが難しいので、その原因についてはこれ以上ここでは議論するのをやめまが、時系列トレンドの定量的な扱いについては、回帰と時系列データを取り上げるときにまとめてアウトルックしたいと思います。参考までに東京の日最高気温と日最低気温の月別ファセットグラフも提示しておきますが、やはり上昇トレンドになっています。
+
+東京の日最高気温月別ファセットグラフ
+>>>img:tokyotempertureMax.png<<<
+
+東京の日最低気温月別ファセットグラフ
+>>>img:tokyotempertureMin.png<<<
+
+さて話をもとに戻しますと、今回調べたいのは今年の暑さは「例年」に較べてどの程度暑かったのか、ということです。そのために、まず「>>>em:例年<<<」というものを決めなければなりません。ここでは後半の地球全体の地表面温度の話と合わせたいので、NASA Goddard Institute for Space StudiesのSurface Temperature Analysisが採用している尺度に合わせておきます：>>>em:1951年から1980年までの30年間の算術平均気温<<<を「例年気温」とします。そして例年気温と調べたい気温の差を「気温アノーマリー」という言葉で言い表しましょう。ここで注意点があります。本来、気温アノーマリーとは、純粋に気候学・気象学の見地からみて特異的である値のことで、都市化の効果や観測点の環境変化そして観測機器の発達による測定感度変化などの気候・気象に関係ない効果を全て排除する必要があります。しかし、ここではそれらの気候・気象に関係ない効果も含めて、人間が体感する温度がアノーマリーかどうかという大雑把な定義を採用したいと思います。
+
+さて、まず例年気温である>>>em:1951年から1980年までの30年間の算術平均気温<<<を求めておきましょう。これには>>>em:subset<<<を利用します。夏の気温だけを見たいので、6月、7月、8月の三か月だけをみれば十分でしょう。気温アノーマリーについて、ここでは8月だけのパターンと、6, 7, 8月の三ヶ月をあわせた夏のパターンという、二つのパターンをみてみます。
+
+>>>shell
+> base <- subset(data, year>1950 & year<=1980, c(Jun, Jul, Aug))
+> head(base)
+    Jun  Jul  Aug
+76 21.2 24.3 26.7
+77 21.3 24.3 26.8
+78 20.6 24.7 25.0
+79 18.3 22.3 27.0
+80 22.7 27.6 26.3
+81 22.3 24.2 25.4
+> baseAug <- mean(base$Aug)
+> baseAug
+[1] 26.71667
+> baseSummer <- sum(mean(base))/3
+> baseSummer
+[1] 24.47444
+<<<
+
+ここでは1951年から1980年までの8月の平均気温、つまり「8月の例年日平均気温」を>>>em:baseAug<<<とし、1951年から1980年までの6月から8月を一緒にした夏の平均気温、つまり「夏の例年日平均気温」>>>em:baseSummer<<<としました。
+
+まず、8月の例年日平均気温と1981年以降の8月の日平均気温との差をとると次のようになります。
+
+>>>shell 
+> dataAug <- subset(data, year>1980, c(year, Aug))
+> ggplot(data=dataAug, aes(x=year, y=Aug-baseAug)) + geom_path()
+<<<
+
+>>>img:tokyoAugAnomaly.png<<<
+
+これを見るとたしかに2010年の8月は例年に比べて高くはなっています。ただし、1995年の8月と同程度のアノーマリーであることがわかります。
+
+次に、夏の例年日平均気温と1981年以降の夏の日平均気温との差をとると次のようになります。データフレームの形の関係上>>>em:cbind<<<で夏の例年日平均気温を結合するという、ちょっとした細工を行いました。
+
+>>>shell
+> dataSummer <- subset(data, year>1980, c(year, Jun, Jul, Aug))
+> dataSummer2 <- (dataSummer$Jun+dataSummer$Jul+dataSummer$Aug)/3
+> dataSummer <- cbind(dataSummer, dataSummer2)
+> colnames(dataSummer) <- c("year", "Jun", "Jul", "Aug", "sumAverage")
+> ggplot(data=dataSummer, aes(x = year, y=sumAverage - baseSummer)) + geom_path()
+<<<
+
+>>>img:tokyoSummerAnomaly.png<<<
+
+これをみると明らかなのは、三ヶ月の日平均気温を考えた場合、過去三十年でみても今年はダントツで暑かった、ということです。数値で確認してみたのが以下のコードで、三ヶ月の日平均気温が例年より今年は2.6度も高かったのです。なるほど、暑かったはずです。
+
+>>>shell
+> dataSummer$sumAverage - baseSummer
+ [1] -0.2411111 -0.6077778 -0.5411111  1.0588889  0.3255556 -0.5411111  0.9922222 -0.5744444 -0.5077778
+[10]  1.4588889  0.7922222 -0.1077778 -1.4744444  2.0588889  0.9255556  0.4588889  0.9588889  0.1922222
+[19]  1.2588889  1.6922222  1.5255556  1.3922222 -0.4744444  1.9922222  1.1588889  0.7255556  1.0588889
+[28]  0.5588889  0.6588889  2.5922222
+<<<
+
+以上は、東京だけに絞って議論をしましたが、この傾向は全国も同様だったそうです。この暑さの原因ですが、気象庁の「夏の異常気象分析」の発表では三つの原因があるとしてます。
+
+平成22年（2010年）夏の異常気象分析検討会での検討結果の概要
+http://www.jma.go.jp/jma/press/1009/03a/100903extreme.html
+
+>>>ul
+・エルニーニョ現象およびラニーニャ現象の合わせ技で北半球中緯度の対流圏の気温が高くなった
+・夏の気象をもたらす太平洋高気圧の勢力がとても強かった
+・涼しい気象をもたらすオホーツク海高気圧が南下しなかった
+<<<
+
+今年の東京の気候はまるで台北や香港やマニラにいるかのようでした。そのために例年に比べて知的生産量が減ったというグチを知人や友人から頻繁に聞きましたし、筆者も残念ながらそのような状態になってしまいました。そして、これからもこのような夏がこれからも続くならば、移住を考えざるをえないと筆者は強く思いました。
+
+● 夏の異常気象：NASA GISSによるグローバル表面温度データ
+
+さて、ここで視点をグローバルに変えて地球全体を考えてみましょう。今年の夏は地球全体をで見た場合どこでどのくらい「アノーマリー」だったのか、ということを、世界地図に空間プロットして確認してみましょう。Rを用いてデータを地図上に空間プロットするには、Geographic Infomation System(GIS)関係の機能が実装された、地図表示パッケージや空間分析パッケージが必要になります。空間プロットについては、地図情報が絡むことで普通のプロットより複雑になるせいか、まだディファクトスタンダードといえるパッケージはでていないようです。そこで、今回はいろいろなパッケージを組み合わせて空間プロットを実現します。具体的には、>>>em:sp<<<パッケージを中心に、世界地図のポリゴンは>>>em:maptools<<<パッケージにあるものを利用し、実際の空間プロットには>>>em:fields<<<にある>>>em:as.image.plot<<<を利用したいと思います。
+
+地球の地表面温度と海表面温度のアノーマリーを定期的に解析しているのが、先ほどもでてきたコロンビア大学にあるNASAのGoddard Institute for Space Studies(GISS)のSurface Temperature Analysisチームです。ちなみに、このNASAのGISSは、地球温暖化理論の父といわれるJames Hansenが長く所長を勤めていることからも分かるように、地球温暖化研究の中心的役割を果たしている機関の一つです。もともとは金星や水星の惑星探査データの解析や惑星大気のモデリングというNASAの王道的な業務をやっていたのですが、1970年代後半に入り惑星探査計画が下火になってリストラされる運命だったところを、地球温暖化研究という「ビジネスモデル」の転換をしてサバイバルしたそうです。
+
+地球の地表面温度と海表面温度のアノーマリーデータはGISSのSurface Temperature Analysisの以下のサイトから手に入れることができます。
+
+Global Maps from GHCN Data
+http://data.giss.nasa.gov/gistemp/maps/
+
+今回は"Mean Period"を6, 7, 8月の三ヶ月データでとり、"Smoothing Radius"を250kmにしたデータ>>>link:http://data.giss.nasa.gov/work/gistemp/NMAPS/tmp_GHCN_GISS_HR2SST_250km_Anom0603_2010_2010_1951_1980/GHCN_GISS_HR2SST_250km_Anom0603_2010_2010_1951_1980.txt
+<<<を利用します。データは以下に挙げておきました。
+
+https://spreadsheets.google.com/pub?key=0AlBuJgqcP5f3dHVCYm5SZUY4cDN1VFFMeWNKQ3IxbFE&hl=en&output=csv
+
+念のために記述しますが、このデータがどのようにして加工されたかとう詳細な過程を知りたい方は、データ加工用のソースコード(Fortran, C, Pythonおよびシェルスクリプト)と説明がオープンになっていますので、それを参照ください。
+
+Sources: GISS Surface Temperature Analysis
+http://data.giss.nasa.gov/gistemp/sources/
+
+さて、必要なパッケージをインストールし、データを読み込むところまで話を進めましょう。パッケージのインストールに指定するCRANサイトは筑波大学を選ぶとよいでしょう。
+
+>>>shell
+> install.packages("sp")
+> install.packages("maptools")
+> install.packages("fields")
+> gtemp <- read.csv("http://spreadsheets.google.com/pub?key=0AlBuJgqcP5f3dHVCYm5SZUY4cDN1VFFMeWNKQ3IxbFE&hl=en&output=csv", header = T, skip = 1, sep = ',')
+> names(gtemp) <- c("i", "j", "lon", "lat", "anom")
+> head(gtemp)
+  i j  lon lat anom
+1 1 1 -179 -89 0.29
+2 2 1 -177 -89 0.29
+3 3 1 -175 -89 0.29
+4 4 1 -173 -89 0.29
+5 5 1 -171 -89 0.29
+6 6 1 -169 -89 0.29
+> gtemp$anom[grep(9999.00, gtemp$anom, fixed=T)] <- NA
+> summary(gtemp)
+       i                j             lon              lat           anom          
+ Min.   :  1.00   Min.   : 1.0   Min.   :-179.0   Min.   :-89   Min.   :  -5.7000  
+ 1st Qu.: 45.75   1st Qu.:23.0   1st Qu.: -89.5   1st Qu.:-45   1st Qu.:   0.0200  
+ Median : 90.50   Median :45.5   Median :   0.0   Median :  0   Median :   0.4600  
+ Mean   : 90.50   Mean   :45.5   Mean   :   0.0   Mean   :  0   Mean   :   0.5536  
+ 3rd Qu.:135.25   3rd Qu.:68.0   3rd Qu.:  89.5   3rd Qu.: 45   3rd Qu.:   0.9800  
+ Max.   :180.00   Max.   :90.0   Max.   : 179.0   Max.   : 89   Max.   :   6.0400  
+                                                                NA's   :3729.0000  
+<<<
+
+これによりデータは>>>em:gtemp<<<という名前のデータフレームに格納されました。i, jはただのインデックスで、>>>em:lon<<<と>>>em:lat<<<がそれぞれ赤経、赤緯という地表面の座標を表します。>>>em:anom<<<が今年の夏の地表面温度/海表面温度のアノーマリーです。上記のコードの最後から二番目でやっていることには少し注意が必要です。GISSデータに含まれている"9999.00"というデータは、データが入手できないという意味ですので、これをRにおける"Not Avairable"の意である>>>em:NA<<<に置き換えているのです。
+
+ここまでデータを用意できたら、それを地図データに展開するべく>>>em:sp<<<パッケージで空間プロット用のデータフレームに加工していきます。具体的には以下の手順です。
+
+>>>shell
+> library(sp)
+> coordinates(gtemp) = c("lon", "lat")
+> summary(gtemp)
+Object of class SpatialPointsDataFrame
+Coordinates:
+     min max
+lon -179 179
+lat  -89  89
+Is projected: NA 
+proj4string : [NA]
+Number of points: 16200
+Data attributes:
+       i                j             anom          
+ Min.   :  1.00   Min.   : 1.0   Min.   :  -5.7000  
+ 1st Qu.: 45.75   1st Qu.:23.0   1st Qu.:   0.0200  
+ Median : 90.50   Median :45.5   Median :   0.4600  
+ Mean   : 90.50   Mean   :45.5   Mean   :   0.5536  
+ 3rd Qu.:135.25   3rd Qu.:68.0   3rd Qu.:   0.9800  
+ Max.   :180.00   Max.   :90.0   Max.   :   6.0400  
+                                 NA's   :3729.0000  
+> gridded(gtemp) <- TRUE
+> summary(gtemp)
+Object of class SpatialPixelsDataFrame
+Coordinates:
+     min max
+lon -180 180
+lat  -90  90
+Is projected: NA 
+proj4string : [NA]
+Number of points: 16200
+Grid attributes:
+    cellcentre.offset cellsize cells.dim
+lon              -179        2       180
+lat               -89        2        90
+Data attributes:
+       i                j             anom          
+ Min.   :  1.00   Min.   : 1.0   Min.   :  -5.7000  
+ 1st Qu.: 45.75   1st Qu.:23.0   1st Qu.:   0.0200  
+ Median : 90.50   Median :45.5   Median :   0.4600  
+ Mean   : 90.50   Mean   :45.5   Mean   :   0.5536  
+ 3rd Qu.:135.25   3rd Qu.:68.0   3rd Qu.:   0.9800  
+ Max.   :180.00   Max.   :90.0   Max.   :   6.0400  
+
+                                 NA's   :3729.0000  
+<<<
+
+まず、通常のデータフレームに>>>em:coodinates<<<で座標を指定することで>>>em:SpatialPointsDataFrame<<<に変換します。次に、>>>em:gridded<<<を利用して全体がグリッドデータであることを明示して>>>em: SpatialPixelsDataFrame <<<にします。
+
+この>>>em: SpatialPixelsDataFrame <<<を実際のプロットイメージにするのが、>>>em: as.image.SpatialGridDataFrame<<<で、最後に赤経、赤緯、そして表面温度アノーマリーの値をリストとして返します。
+
+>>>
+> anomimage <- as.image.SpatialGridDataFrame(gtemp["anom"])
+> summary(anomimage)
+  Length Class  Mode   
+x   180  -none- numeric
+y    90  -none- numeric
+z 16200  -none- numeric
+> class(anomimage)
+[1] "list"
+<<<
+
+さて、このプロットイメージを空間プロットします。空間プロットには>>>em:sp<<<パッケージの>>>em:image<<<関数を利用し、世界地図は>>>maptools<<<の>>>em:wrld_siml<<<を利用しましょう。
+
+>>>shell
+> image(anomimage)
+> library(maptools)
+> data(wrld_simpl)
+> plot(wrld_simpl, add = T)
+<<<
+
+>>>img:grobalSummerAnomaly_pre.jpg<<<
+
+これを見ると、確かにプロットはされていますが、これでは同色のカラースキームを利用しているので値の違いがよくわかりませんし、カラーバーが表示されていないので値の大きさが把握できません。これを改善するために、>>>em:fields<<<パッケージの>>>em:img.plot<<<を利用します。
+
+<<<shell
+> library(fields)
+> image.plot(anomimage, nlevel=24)
+> plot(wrld_simpl, add = T)
+> grid(col = "grey", lty = 1)
+<<<
+
+>>>img:grobalSummerAnomaly.jpg<<<
+
+>>>em:image.plot<<<の>>>em:nlevel<<<は値を色に割り振ると際の分解能です。
+
+上図ならば、地球全体でこの夏に何が起きていたかかなり状況がわかります。この夏は赤緯50度線の付近で温度の過度な上昇というアノーマリーが発生していました。ロシアやウクライナ、カザフスタン、モンゴルでは例年の平均気温より5度から6度も高いという異常さを表しています。また日本などの極東やヨーロッパ全域、そしてアメリカ東部も平均気温が2度より高くなっています。
+
+結果の詳細はGISSのSurface Temperature Analysisチームの以下の報告にありますので、興味がある方は参照ください。
+
+July 2010 — What Global Warming Looks Like
+http://data.giss.nasa.gov/gistemp/2010july/
+
+この夏の異常な温度上昇という現象がどのようなメカニズムで引き起こされたかということは、今後の気候学、気象学の研究を待つことになりますが、このように直近のオープン・データを利用し少し手間を掛けるだけで、気候や気象の状況をモニタリングするということさえ、個人でできるようになりました。本当に良い時代になったものだと思います。
+
+●次回について
+
+次回もまた、オープンソースのRを利用して、オープンデータにアクセスし、オープンアイディアの活用したいと思います。それでは、また二週間後に会いましょう。

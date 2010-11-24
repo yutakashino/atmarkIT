@@ -1,0 +1,69 @@
+
+R version 2.10.1 (2009-12-14)
+Copyright (C) 2009 The R Foundation for Statistical Computing
+ISBN 3-900051-07-0
+
+Rは、自由なソフトウェアであり、「完全に無保証」です。 
+一定の条件に従えば、自由にこれを再配布することができます。 
+配布条件の詳細に関しては、'license()'あるいは'licence()'と入力してください。 
+
+Rは多くの貢献者による共同プロジェクトです。 
+詳しくは'contributors()'と入力してください。 
+また、RやRのパッケージを出版物で引用する際の形式については
+'citation()'と入力してください。 
+
+'demo()'と入力すればデモをみることができます。 
+'help()'とすればオンラインヘルプが出ます。 
+'help.start()'でHTMLブラウザによるヘルプがみられます。 
+'q()'と入力すればRを終了します。 
+
+> setwd("/Users/yutakashino/Dropbox/sandboxDrop/@IT/sandbox/sumo")
+> library(plyr)
+> fn <- file("out.csv", open="r", encoding="utf-8")
+> df <- read.csv(file = fn, header = FALSE)
+> names(df) <- c("rikishi", "vs", "win", "year", "month")
+> nrow(df)
+[1] 43654
+> df <- subset(df, df$win!=-100 & df$win!=-1)
+> 
+> #ddply(subset(df2, year==1999 & month==1), .(rikishi), function(d) data.frame(numwin = sum(d$win)))
+> #ddply(subset(df2, year==1999 & month==1), .(rikishi), summarize, numwin=sum(win))
+> 
+> df <- ddply(df, .(rikishi, year, month), summarize, numwin=sum(win))
+> 
+> library(ggplot2)
+ 要求されたパッケージ proto をロード中です 
+ 要求されたパッケージ grid をロード中です 
+ 要求されたパッケージ reshape をロード中です 
+ 要求されたパッケージ digest をロード中です 
+> p2 <- ggplot(df, aes(numwin)) + geom_histogram(aes(y = ..count..))
+> ggsave(plot = p2, filename = "sumoobservation.png")
+Saving 7" x 7" image
+stat_bin: binwidth defaulted to range/30. Use 'binwidth = x' to adjust this.
+> 
+> #p2 + stat_function(geom="line", fun = function(..., total){dbinom(...) * total}, arg = list(size=15, prob=1/2, total=nrow(df3)))
+> 
+> dsumo <- function(x, total) total*dbinom(x, size = 15, prob = 1/2)
+> dft<- data.frame(x = c(0:15), win_theory = dsumo(c(0:15), nrow(df)))
+> df2 <- as.data.frame(table(df$numwin))
+> names(df2) <- c("x", "win_observ")
+> str(df2)
+'data.frame':	16 obs. of  2 variables:
+ $ x         : Factor w/ 16 levels "0","1","2","3",..: 1 2 3 4 5 6 7 8 9 10 ...
+ $ win_observ: int  33 31 67 92 202 278 355 356 522 359 ...
+> df2 <- transform(df2, x = as.integer(x)-1, win_theory = dft$win_theory)
+> ggplot(data = melt(df2, id = 'x'), aes(x = x, y = value, colour = variable)) + geom_line()
+> ggplot(data = df2, aes(x)) + geom_point(aes(y = win_observ, colour = "win_observ")) + geom_line(aes(y = win_theory, colour = "win_theory"))
+> ggsave("sumoanom.png")
+Saving 7" x 7" image
+> 
+> #df5 <- merge(df2, dft, by="x")
+> #df6 <- df5[with(df5, order(x)),]
+> #write.csv(df5, file="df5.csv")
+> #d <- read.csv("df5.csv")
+> #ggplot(d, aes(x)) + geom_line(aes(y=win_observ, colour = "win_observ")) + geom_line(aes(y=win_theory, colour="win_theory"))
+> #ggplot(data=d, aes(x))+geom_rect(aes(xmin=x-1, xmax=x, ymin=0, ymax=win_observ, colour="darkgreen", fill="white"))+geom_line(aes(y=win_theory, colour="win_theory"))
+> 
+> proc.time()
+   ユーザ   システム       経過  
+    27.850      1.862     32.226 

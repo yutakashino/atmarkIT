@@ -1,0 +1,140 @@
+HistoryPanel.prototype._showApplyOperationsDialog = function() {
+    var self = this;
+    var frame = $(DOM.loadHTML("core", "scripts/project/history-apply-dialog.html"));
+    var elmts = DOM.bind(frame);
+    
+    var fixJson = function(json) {
+        json = json.trim();
+        if (!json.startsWith("[")) {
+            json = "[" + json;
+        }
+        if (!json.endsWith("]")) {
+            json = json + "]";
+        }
+        
+        return json.replace(/\}\s*\,\s*\]/g, "} ]").replace(/\}\s*\{/g, "}, {");
+    };
+    
+    elmts.applyButton.click(function() {
+        var json;
+        
+        try {
+            json = elmts.textarea[0].value;
+            json = fixJson(json);
+            json = JSON.parse(json);
+        } catch (e) {
+            alert("The JSON you pasted is invalid.");
+            return;
+        }
+        
+        Refine.postCoreProcess(
+            "apply-operations",
+            {},
+            { operations: JSON.stringify(json) },
+            { everythingChanged: true },
+            {
+                onDone: function(o) {
+                    if (o.code == "pending") {
+                        // Something might have already been done and so it's good to update
+                        Refine.update({ everythingChanged: true });
+                    }
+                }
+            }
+        );
+        
+        DialogSystem.dismissUntil(level - 1);
+    });
+    
+    elmts.cancelButton.click(function() {
+        DialogSystem.dismissUntil(level - 1);
+    });
+    
+    var level = DialogSystem.showDialog(frame);
+    
+    elmts.textarea.focus();
+};
+
+Refine.postCoreProcess = function(command, params, body, updateOptions, callbacks) {
+    Refine.postProcess("core", command, params, body, updateOptions, callbacks);
+};
+
+Refine.postProcess = function(moduleName, command, params, body, updateOptions, callbacks) {
+    updateOptions = updateOptions || {};
+    callbacks = callbacks || {};
+    
+    params = params || {};
+    params.project = theProject.id;
+    
+    body = body || {};
+    if (!("includeEngine" in updateOptions) || updateOptions.includeEngine) {
+        body.engine = JSON.stringify(
+            "engineConfig" in updateOptions ?
+                updateOptions.engineConfig :
+                ui.browsingEngine.getJSON()
+        );
+    }
+    
+    var done = false;
+    var dismissBusy = null;
+    
+    function onDone(o) {
+        done = true;
+        if (dismissBusy) {
+            dismissBusy();
+        }
+        
+        Refine.clearAjaxInProgress();
+        
+        if (o.code == "error") {
+            if ("onError" in callbacks) {
+                try {
+                    callbacks.onError(o);
+                } catch (e) {
+                    Refine.reportException(e);
+                }
+            } else {
+                alert(o.message);
+            }
+        } else {
+            if ("onDone" in callbacks) {
+                try {
+                    callbacks.onDone(o);
+                } catch (e) {
+                    Refine.reportException(e);
+                }
+            }
+            
+            if (o.code == "ok") {
+                Refine.update(updateOptions, callbacks.onFinallyDone);
+                
+                if ("historyEntry" in o) {
+                    ui.processPanel.showUndo(o.historyEntry);
+                }
+            } else if (o.code == "pending") {
+                if ("onPending" in callbacks) {
+                    try {
+                        callbacks.onPending(o);
+                    } catch (e) {
+                        Refine.reportException(e);
+                    }
+                }
+                ui.processPanel.update(updateOptions, callbacks.onFinallyDone);
+            }
+        }
+    }
+    
+    Refine.setAjaxInProgress();
+    
+    $.post(
+        "/command/" + moduleName + "/" + command + "?" + $.param(params),
+        body,
+        onDone,
+        "json"
+    );
+    
+    window.setTimeout(function() {
+        if (!done) {
+            dismissBusy = DialogSystem.showBusy();
+        }
+    }, 500);
+};

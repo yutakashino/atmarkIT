@@ -1,0 +1,1181 @@
+
+<html>
+<head>
+<!---->
+<title>
+Yahoo! Sports - 大相撲: 幕内星取表
+</title>
+<link href="http://i.yimg.jp/images/css/yj2.css" rel="stylesheet" type="text/css" media="screen, print">
+<link href="http://i.yimg.jp/images/css/printexec.css" rel="stylesheet" type="text/css" media="print">
+</head>
+<body marginheight=0 topmargin=0>
+<!-- SpaceID=0 robot -->
+<!-- SpaceID=0 robot -->
+
+<div class="yjmth">
+<div class="yjmthproplogoarea"><a href=http://sports.yahoo.co.jp/><img src=http://i.yimg.jp/images/mh/sports.gif width=228 height=40 border=0 alt="Yahoo!スポーツ"></a></div>
+<div class="yjmthloginarea"><strong><a href="https://login.yahoo.co.jp/config/login?.src=spt&lg=jp&.intl=jp&.done=http%3A%2F%2Fsports.yahoo.co.jp%2Fsumo%2Fetc%2Ftorikumi%2F200709%2F">ログイン</a></strong><br>
+IDでもっと便利に[ <a href="https://account.edit.yahoo.co.jp/registration?.src=spt&.done=http%3A%2F%2Fsports.yahoo.co.jp%2Fsumo%2Fetc%2Ftorikumi%2F200709%2F">新規取得</a> ]</div>
+
+<div class="yjmthcmnlnkarea"><a href=http://www.yahoo.co.jp/>Yahoo! JAPAN</a>&nbsp;-&nbsp;<a href=http://help.yahoo.co.jp/help/jp/sports/>ヘルプ</a></div>
+<br class="yjmthclear">
+</div>
+
+<p>
+<center>
+<!-- SpaceID=0 robot -->
+</center>
+<p>
+
+
+<table border=0 width=100% cellspacing=0 cellpadding=6 bgcolor="#483D8B">
+<tr>
+<td align="right">
+<font size=-1 color="#F5F5DC">スポーツ速報 | 大相撲</font><br>
+<font color="#F5F5DC"><b>幕内星取表</b></font></td>
+</tr>
+</table>
+
+<table border=0 cellpadding=0 cellspacing=0 width=100%>
+<tr>
+<td>
+<table border=0 width=100% cellspacing=0 cellpadding=6 bgcolor="#cccccc">
+<tr>
+<td>　　　　　　　　</td>
+<td align="right"><b>
+平成 19 年取り組み結果
+</b></td>
+<td align="right"><a href="http://sports.yahoo.co.jp/sumo/">大相撲トップページ</a></td></tr>
+</table>
+
+</td></tr>
+<tr><td valign="top">
+
+<table border=0 cellpadding=0 cellspacing=2 width=100%>
+<tr><td bgcolor="#483D8B">
+<table border=0 cellpadding=3 cellspacing=2 width=100%>
+<tr>
+<th width=15% bgcolor="#F5F5DC" nowrap>
+＜ <a href="/sumo/etc/torikumi/200611/">平成 18年</a></th>
+<th width=70%><font color="#F5F5DC"> 九 月場所</font></th>
+<th width=15% bgcolor="#F5F5DC" nowrap>
+<a href="/sumo/etc/torikumi/200801/">平成 20年</a> ＞</th>
+<!--
+<th width=15% bgcolor="#F5F5DC" nowrap align=right><a href="/sumo/htdocs/etc/torikumi/200801/">平成20年</a> ＞</th>
+-->
+</tr>
+</table>
+</td></tr>
+</table>
+<table border=0 cellpadding=0 cellspacing=2 width=100%>
+<tr><td width=20%>
+
+<table border=0 cellpadding=0 cellspacing=0 width=100%>
+<tr><td bgcolor="#483D8B">
+<table border=0 cellpadding=2 cellspacing=2 width=100%>
+<tr><th bgcolor="#F5DEB3"><a href="/sumo/etc/torikumi/200701/">一月場所</a></th></tr>
+</table>
+</td></tr>
+</table>
+
+</td><td width=20%><table border=0 cellpadding=0 cellspacing=0 width=100%>
+<tr><td bgcolor="#483D8B">
+<table border=0 cellpadding=2 cellspacing=2 width=100%>
+<tr><th bgcolor="#F5DEB3"><a href="/sumo/etc/torikumi/200703/">三月場所</a></th></tr>
+</table>
+</td></tr>
+</table>
+
+</td><td width=20%><table border=0 cellpadding=0 cellspacing=0 width=100%>
+<tr><td bgcolor="#483D8B">
+<table border=0 cellpadding=2 cellspacing=2 width=100%>
+<tr><th bgcolor="#F5DEB3"><a href="/sumo/etc/torikumi/200705/">五月場所</a></th></tr>
+</table>
+</td></tr>
+</table>
+
+</td><td width=20%><table border=0 cellpadding=0 cellspacing=0 width=100%>
+<tr><td bgcolor="#483D8B">
+<table border=0 cellpadding=2 cellspacing=2 width=100%>
+<tr><th bgcolor="#F5DEB3" align="center"><a href="/sumo/etc/torikumi/200707/">七月場所</a></th></tr>
+</table>
+</td></tr>
+</table>
+
+</td><td width=20%><table border=0 cellpadding=0 cellspacing=0 width=100%>
+<tr><td bgcolor="#483D8B">
+<table border=0 cellpadding=2 cellspacing=2 width=100%>
+<tr><th bgcolor="#F5DEB3" align="center"><a href="/sumo/etc/torikumi/200711/">十一月場所</a></th></tr>
+</table>
+</td></tr>
+</table>
+
+
+</td></tr>
+</table>
+
+
+<center>
+<table border=0 cellpadding=2 cellspacing=1 width=95%>
+<tr><td align="right">
+☆は勝ち越し、★は負け越し
+</td></tr>
+</table>
+<table border=3 cellpadding=2 cellspacing=1 width=95% bgcolor="#F5DEB3">
+<tr>
+<th width=48%><font size="+1">東</font></th>
+<th width=4% nowrap>格<br>付</th>
+<th width=48%><font size="+1">西</font></th>
+</tr>
+<tr align="center" valign="top">
+  <td>
+    <b>朝青龍　★</b><br>
+    0勝0敗15休<br>
+    <table border=0 cellpadding=1 cellspacing=1>
+      <tr align=center valign=top>
+        <td>や</td>
+        <td>や</td>
+        <td>や</td>
+        <td>や</td>
+        <td>や</td>
+        <td>や</td>
+        <td>や</td>
+        <td>や</td>
+        <td>や</td>
+        <td>や</td>
+        <td>や</td>
+        <td>や</td>
+        <td>や</td>
+        <td>や</td>
+        <td>や</td>
+      </tr>
+    </table>
+  </td>
+  <th nowrap valign="middle">横<br>綱</th>
+  <td>
+    <b>白鵬　☆</b><br>
+    13勝2敗<br>
+    <table border=0 cellpadding=1 cellspacing=1>
+      <tr align=center valign=top>
+        <td>●<br>安<br>馬</td>
+        <td>○<br>時<br>天<br>空</td>
+        <td>○<br>鶴<br>竜</td>
+        <td>○<br>栃<br>乃<br>洋</td>
+        <td>○<br>北<br>勝<br>力</td>
+        <td>○<br>稀<br>勢<br>の<br>里</td>
+        <td>○<br>琴<br>奨<br>菊</td>
+        <td>○<br>豊<br>真<br>将</td>
+        <td>○<br>出<br>島</td>
+        <td>○<br>朝<br>赤<br>龍</td>
+        <td>●<br>豊<br>ノ<br>島</td>
+        <td>○<br>安<br>美<br>錦</td>
+        <td>○<br>琴<br>光<br>喜</td>
+        <td>○<br>豪<br>栄<br>道</td>
+        <td>○<br>千<br>代<br>大<br>海</td>
+      </tr>
+    </table>
+  </td>
+</tr>
+<tr align="center" valign="top">
+  <td>
+    <b>千代大海　☆</b><br>
+    9勝6敗<br>
+    <table border=0 cellpadding=1 cellspacing=1>
+      <tr align=center valign=top>
+        <td>○<br>稀<br>勢<br>の<br>里</td>
+        <td>○<br>栃<br>乃<br>洋</td>
+        <td>○<br>出<br>島</td>
+        <td>○<br>北<br>勝<br>力</td>
+        <td>●<br>安<br>馬</td>
+        <td>○<br>時<br>天<br>空</td>
+        <td>○<br>鶴<br>竜</td>
+        <td>○<br>若<br>の<br>里</td>
+        <td>●<br>豊<br>真<br>将</td>
+        <td>○<br>安<br>美<br>錦</td>
+        <td>●<br>琴<br>奨<br>菊</td>
+        <td>●<br>朝<br>赤<br>龍</td>
+        <td>○<br>豪<br>栄<br>道</td>
+        <td>●<br>琴<br>光<br>喜</td>
+        <td>●<br>白<br>鵬</td>
+      </tr>
+    </table>
+  </td>
+  <th nowrap valign="middle">大<br>関</th>
+  <td>
+    <b>琴欧洲　☆</b><br>
+    8勝7敗<br>
+    <table border=0 cellpadding=1 cellspacing=1>
+      <tr align=center valign=top>
+        <td>○<br>時<br>天<br>空</td>
+        <td>○<br>安<br>馬</td>
+        <td>●<br>栃<br>乃<br>洋</td>
+        <td>○<br>豊<br>真<br>将</td>
+        <td>○<br>鶴<br>竜</td>
+        <td>○<br>北<br>勝<br>力</td>
+        <td>●<br>出<br>島</td>
+        <td>●<br>豊<br>ノ<br>島</td>
+        <td>○<br>稀<br>勢<br>の<br>里</td>
+        <td>○<br>雅<br>山</td>
+        <td>●<br>朝<br>赤<br>龍</td>
+        <td>○<br>豪<br>風</td>
+        <td>●<br>若<br>の<br>里</td>
+        <td>●<br>春<br>日<br>王</td>
+        <td>●<br>安<br>美<br>錦</td>
+      </tr>
+    </table>
+  </td>
+</tr>
+<tr align="center" valign="top">
+  <td>
+    <b>魁皇　★</b><br>
+    1勝5敗9休<br>
+    <table border=0 cellpadding=1 cellspacing=1>
+      <tr align=center valign=top>
+        <td>●<br>豊<br>真<br>将</td>
+        <td>●<br>稀<br>勢<br>の<br>里</td>
+        <td>●<br>北<br>勝<br>力</td>
+        <td>○<br>安<br>馬</td>
+        <td>●<br>出<br>島</td>
+        <td>■<br>栃<br>乃<br>洋</td>
+        <td>や</td>
+        <td>や</td>
+        <td>や</td>
+        <td>や</td>
+        <td>や</td>
+        <td>や</td>
+        <td>や</td>
+        <td>や</td>
+        <td>や</td>
+      </tr>
+    </table>
+  </td>
+  <th nowrap valign="middle">大<br>関</th>
+  <td>
+    <b>琴光喜　☆</b><br>
+    10勝5敗<br>
+    <table border=0 cellpadding=1 cellspacing=1>
+      <tr align=center valign=top>
+        <td>○<br>栃<br>乃<br>洋</td>
+        <td>○<br>豊<br>真<br>将</td>
+        <td>●<br>安<br>馬</td>
+        <td>○<br>時<br>天<br>空</td>
+        <td>○<br>若<br>の<br>里</td>
+        <td>●<br>朝<br>赤<br>龍</td>
+        <td>○<br>北<br>勝<br>力</td>
+        <td>○<br>鶴<br>竜</td>
+        <td>●<br>豊<br>ノ<br>島</td>
+        <td>●<br>出<br>島</td>
+        <td>○<br>安<br>美<br>錦</td>
+        <td>○<br>雅<br>山</td>
+        <td>●<br>白<br>鵬</td>
+        <td>○<br>千<br>代<br>大<br>海</td>
+        <td>○<br>稀<br>勢<br>の<br>里</td>
+      </tr>
+    </table>
+  </td>
+</tr>
+<tr align="center" valign="top">
+  <td>
+    <b>安美錦　☆</b><br>
+    10勝5敗<br>
+    <table border=0 cellpadding=1 cellspacing=1>
+      <tr align=center valign=top>
+        <td>○<br>鶴<br>竜</td>
+        <td>○<br>北<br>勝<br>力</td>
+        <td>○<br>稀<br>勢<br>の<br>里</td>
+        <td>○<br>琴<br>奨<br>菊</td>
+        <td>○<br>朝<br>赤<br>龍</td>
+        <td>○<br>出<br>島</td>
+        <td>○<br>時<br>天<br>空</td>
+        <td>○<br>栃<br>乃<br>洋</td>
+        <td>●<br>若<br>の<br>里</td>
+        <td>●<br>千<br>代<br>大<br>海</td>
+        <td>●<br>琴<br>光<br>喜</td>
+        <td>●<br>白<br>鵬</td>
+        <td>●<br>豊<br>真<br>将</td>
+        <td>○<br>豊<br>ノ<br>島</td>
+        <td>○<br>琴<br>欧<br>洲</td>
+      </tr>
+    </table>
+  </td>
+  <th nowrap valign="middle">関<br>脇</th>
+  <td>
+    <b>朝赤龍　☆</b><br>
+    8勝7敗<br>
+    <table border=0 cellpadding=1 cellspacing=1>
+      <tr align=center valign=top>
+        <td>○<br>北<br>勝<br>力</td>
+        <td>●<br>鶴<br>竜</td>
+        <td>●<br>豊<br>真<br>将</td>
+        <td>○<br>稀<br>勢<br>の<br>里</td>
+        <td>●<br>安<br>美<br>錦</td>
+        <td>○<br>琴<br>光<br>喜</td>
+        <td>○<br>栃<br>乃<br>洋</td>
+        <td>●<br>安<br>馬</td>
+        <td>●<br>時<br>天<br>空</td>
+        <td>●<br>白<br>鵬</td>
+        <td>○<br>琴<br>欧<br>洲</td>
+        <td>○<br>千<br>代<br>大<br>海</td>
+        <td>○<br>琴<br>奨<br>菊</td>
+        <td>○<br>出<br>島</td>
+        <td>●<br>豊<br>ノ<br>島</td>
+      </tr>
+    </table>
+  </td>
+</tr>
+<tr align="center" valign="top">
+  <td>
+    <b>稀勢の里　★</b><br>
+    6勝9敗<br>
+    <table border=0 cellpadding=1 cellspacing=1>
+      <tr align=center valign=top>
+        <td>●<br>千<br>代<br>大<br>海</td>
+        <td>○<br>魁<br>皇</td>
+        <td>●<br>安<br>美<br>錦</td>
+        <td>●<br>朝<br>赤<br>龍</td>
+        <td>○<br>栃<br>乃<br>洋</td>
+        <td>●<br>白<br>鵬</td>
+        <td>○<br>安<br>馬</td>
+        <td>●<br>時<br>天<br>空</td>
+        <td>●<br>琴<br>欧<br>洲</td>
+        <td>○<br>豊<br>真<br>将</td>
+        <td>●<br>鶴<br>竜</td>
+        <td>○<br>北<br>勝<br>力</td>
+        <td>●<br>出<br>島</td>
+        <td>○<br>雅<br>山</td>
+        <td>●<br>琴<br>光<br>喜</td>
+      </tr>
+    </table>
+  </td>
+  <th nowrap valign="middle">小<br>結</th>
+  <td>
+    <b>安馬　☆</b><br>
+    10勝5敗<br>
+    <table border=0 cellpadding=1 cellspacing=1>
+      <tr align=center valign=top>
+        <td>○<br>白<br>鵬</td>
+        <td>●<br>琴<br>欧<br>洲</td>
+        <td>○<br>琴<br>光<br>喜</td>
+        <td>●<br>魁<br>皇</td>
+        <td>○<br>千<br>代<br>大<br>海</td>
+        <td>○<br>鶴<br>竜</td>
+        <td>●<br>稀<br>勢<br>の<br>里</td>
+        <td>○<br>朝<br>赤<br>龍</td>
+        <td>○<br>北<br>勝<br>力</td>
+        <td>○<br>時<br>天<br>空</td>
+        <td>○<br>豊<br>真<br>将</td>
+        <td>○<br>豪<br>栄<br>道</td>
+        <td>○<br>豊<br>ノ<br>島</td>
+        <td>●<br>旭<br>天<br>鵬</td>
+        <td>●<br>琴<br>奨<br>菊</td>
+      </tr>
+    </table>
+  </td>
+</tr>
+<tr align="center" valign="top">
+  <td>
+    <b>時天空　★</b><br>
+    6勝9敗<br>
+    <table border=0 cellpadding=1 cellspacing=1>
+      <tr align=center valign=top>
+        <td>●<br>琴<br>欧<br>洲</td>
+        <td>●<br>白<br>鵬</td>
+        <td>○<br>琴<br>奨<br>菊</td>
+        <td>●<br>琴<br>光<br>喜</td>
+        <td>●<br>雅<br>山</td>
+        <td>●<br>千<br>代<br>大<br>海</td>
+        <td>●<br>安<br>美<br>錦</td>
+        <td>○<br>稀<br>勢<br>の<br>里</td>
+        <td>○<br>朝<br>赤<br>龍</td>
+        <td>●<br>安<br>馬</td>
+        <td>○<br>栃<br>乃<br>洋</td>
+        <td>●<br>豊<br>真<br>将</td>
+        <td>●<br>鶴<br>竜</td>
+        <td>○<br>北<br>勝<br>力</td>
+        <td>○<br>若<br>の<br>里</td>
+      </tr>
+    </table>
+  </td>
+  <th nowrap valign="middle">前<br>頭<br>筆<br>頭</th>
+  <td>
+    <b>豊真将　☆</b><br>
+    8勝7敗<br>
+    <table border=0 cellpadding=1 cellspacing=1>
+      <tr align=center valign=top>
+        <td>○<br>魁<br>皇</td>
+        <td>●<br>琴<br>光<br>喜</td>
+        <td>○<br>朝<br>赤<br>龍</td>
+        <td>●<br>琴<br>欧<br>洲</td>
+        <td>●<br>豊<br>ノ<br>島</td>
+        <td>○<br>若<br>の<br>里</td>
+        <td>○<br>雅<br>山</td>
+        <td>●<br>白<br>鵬</td>
+        <td>○<br>千<br>代<br>大<br>海</td>
+        <td>●<br>稀<br>勢<br>の<br>里</td>
+        <td>●<br>安<br>馬</td>
+        <td>○<br>時<br>天<br>空</td>
+        <td>○<br>安<br>美<br>錦</td>
+        <td>○<br>鶴<br>竜</td>
+        <td>●<br>出<br>島</td>
+      </tr>
+    </table>
+  </td>
+</tr>
+<tr align="center" valign="top">
+  <td>
+    <b>栃乃洋　★</b><br>
+    4勝11敗<br>
+    <table border=0 cellpadding=1 cellspacing=1>
+      <tr align=center valign=top>
+        <td>●<br>琴<br>光<br>喜</td>
+        <td>●<br>千<br>代<br>大<br>海</td>
+        <td>○<br>琴<br>欧<br>洲</td>
+        <td>●<br>白<br>鵬</td>
+        <td>●<br>稀<br>勢<br>の<br>里</td>
+        <td>□<br>魁<br>皇</td>
+        <td>●<br>朝<br>赤<br>龍</td>
+        <td>●<br>安<br>美<br>錦</td>
+        <td>●<br>雅<br>山</td>
+        <td>●<br>鶴<br>竜</td>
+        <td>●<br>時<br>天<br>空</td>
+        <td>○<br>海<br>鵬</td>
+        <td>●<br>北<br>勝<br>力</td>
+        <td>○<br>若<br>の<br>里</td>
+        <td>●<br>時<br>津<br>海</td>
+      </tr>
+    </table>
+  </td>
+  <th nowrap valign="middle">前<br>頭<br>2<br>枚<br>目</th>
+  <td>
+    <b>鶴竜　★</b><br>
+    7勝8敗<br>
+    <table border=0 cellpadding=1 cellspacing=1>
+      <tr align=center valign=top>
+        <td>●<br>安<br>美<br>錦</td>
+        <td>○<br>朝<br>赤<br>龍</td>
+        <td>●<br>白<br>鵬</td>
+        <td>○<br>出<br>島</td>
+        <td>●<br>琴<br>欧<br>洲</td>
+        <td>●<br>安<br>馬</td>
+        <td>●<br>千<br>代<br>大<br>海</td>
+        <td>●<br>琴<br>光<br>喜</td>
+        <td>●<br>琴<br>奨<br>菊</td>
+        <td>○<br>栃<br>乃<br>洋</td>
+        <td>○<br>稀<br>勢<br>の<br>里</td>
+        <td>○<br>若<br>の<br>里</td>
+        <td>○<br>時<br>天<br>空</td>
+        <td>●<br>豊<br>真<br>将</td>
+        <td>○<br>春<br>日<br>王</td>
+      </tr>
+    </table>
+  </td>
+</tr>
+<tr align="center" valign="top">
+  <td>
+    <b>北勝力　★</b><br>
+    3勝12敗<br>
+    <table border=0 cellpadding=1 cellspacing=1>
+      <tr align=center valign=top>
+        <td>●<br>朝<br>赤<br>龍</td>
+        <td>●<br>安<br>美<br>錦</td>
+        <td>○<br>魁<br>皇</td>
+        <td>●<br>千<br>代<br>大<br>海</td>
+        <td>●<br>白<br>鵬</td>
+        <td>●<br>琴<br>欧<br>洲</td>
+        <td>●<br>琴<br>光<br>喜</td>
+        <td>●<br>時<br>津<br>海</td>
+        <td>●<br>安<br>馬</td>
+        <td>○<br>若<br>の<br>里</td>
+        <td>●<br>土<br>佐<br>ノ<br>海</td>
+        <td>●<br>稀<br>勢<br>の<br>里</td>
+        <td>○<br>栃<br>乃<br>洋</td>
+        <td>●<br>時<br>天<br>空</td>
+        <td>●<br>露<br>鵬</td>
+      </tr>
+    </table>
+  </td>
+  <th nowrap valign="middle">前<br>頭<br>3<br>枚<br>目</th>
+  <td>
+    <b>琴奨菊　☆</b><br>
+    10勝5敗<br>
+    <table border=0 cellpadding=1 cellspacing=1>
+      <tr align=center valign=top>
+        <td>○<br>出<br>島</td>
+        <td>○<br>若<br>の<br>里</td>
+        <td>●<br>時<br>天<br>空</td>
+        <td>●<br>安<br>美<br>錦</td>
+        <td>●<br>豊<br>響</td>
+        <td>○<br>雅<br>山</td>
+        <td>●<br>白<br>鵬</td>
+        <td>○<br>海<br>鵬</td>
+        <td>○<br>鶴<br>竜</td>
+        <td>○<br>玉<br>乃<br>島</td>
+        <td>○<br>千<br>代<br>大<br>海</td>
+        <td>○<br>豊<br>ノ<br>島</td>
+        <td>●<br>朝<br>赤<br>龍</td>
+        <td>○<br>垣<br>添</td>
+        <td>○<br>安<br>馬</td>
+      </tr>
+    </table>
+  </td>
+</tr>
+<tr align="center" valign="top">
+  <td>
+    <b>出島　☆</b><br>
+    8勝7敗<br>
+    <table border=0 cellpadding=1 cellspacing=1>
+      <tr align=center valign=top>
+        <td>●<br>琴<br>奨<br>菊</td>
+        <td>○<br>豊<br>ノ<br>島</td>
+        <td>●<br>千<br>代<br>大<br>海</td>
+        <td>●<br>鶴<br>竜</td>
+        <td>○<br>魁<br>皇</td>
+        <td>●<br>安<br>美<br>錦</td>
+        <td>○<br>琴<br>欧<br>洲</td>
+        <td>○<br>豊<br>響</td>
+        <td>●<br>白<br>鵬</td>
+        <td>○<br>琴<br>光<br>喜</td>
+        <td>●<br>若<br>の<br>里</td>
+        <td>○<br>玉<br>乃<br>島</td>
+        <td>○<br>稀<br>勢<br>の<br>里</td>
+        <td>●<br>朝<br>赤<br>龍</td>
+        <td>○<br>豊<br>真<br>将</td>
+      </tr>
+    </table>
+  </td>
+  <th nowrap valign="middle">前<br>頭<br>4<br>枚<br>目</th>
+  <td>
+    <b>若の里　★</b><br>
+    5勝10敗<br>
+    <table border=0 cellpadding=1 cellspacing=1>
+      <tr align=center valign=top>
+        <td>●<br>豊<br>ノ<br>島</td>
+        <td>●<br>琴<br>奨<br>菊</td>
+        <td>○<br>海<br>鵬</td>
+        <td>●<br>豊<br>響</td>
+        <td>●<br>琴<br>光<br>喜</td>
+        <td>●<br>豊<br>真<br>将</td>
+        <td>○<br>時<br>津<br>海</td>
+        <td>●<br>千<br>代<br>大<br>海</td>
+        <td>○<br>安<br>美<br>錦</td>
+        <td>●<br>北<br>勝<br>力</td>
+        <td>○<br>出<br>島</td>
+        <td>●<br>鶴<br>竜</td>
+        <td>○<br>琴<br>欧<br>洲</td>
+        <td>●<br>栃<br>乃<br>洋</td>
+        <td>●<br>時<br>天<br>空</td>
+      </tr>
+    </table>
+  </td>
+</tr>
+<tr align="center" valign="top">
+  <td>
+    <b>豊ノ島　☆</b><br>
+    8勝7敗<br>
+    <table border=0 cellpadding=1 cellspacing=1>
+      <tr align=center valign=top>
+        <td>○<br>若<br>の<br>里</td>
+        <td>●<br>出<br>島</td>
+        <td>●<br>玉<br>乃<br>島</td>
+        <td>○<br>土<br>佐<br>ノ<br>海</td>
+        <td>○<br>豊<br>真<br>将</td>
+        <td>○<br>海<br>鵬</td>
+        <td>●<br>豊<br>響</td>
+        <td>○<br>琴<br>欧<br>洲</td>
+        <td>○<br>琴<br>光<br>喜</td>
+        <td>●<br>豪<br>風</td>
+        <td>○<br>白<br>鵬</td>
+        <td>●<br>琴<br>奨<br>菊</td>
+        <td>●<br>安<br>馬</td>
+        <td>●<br>安<br>美<br>錦</td>
+        <td>○<br>朝<br>赤<br>龍</td>
+      </tr>
+    </table>
+  </td>
+  <th nowrap valign="middle">前<br>頭<br>5<br>枚<br>目</th>
+  <td>
+    <b>雅山　☆</b><br>
+    9勝6敗<br>
+    <table border=0 cellpadding=1 cellspacing=1>
+      <tr align=center valign=top>
+        <td>○<br>豊<br>響</td>
+        <td>●<br>海<br>鵬</td>
+        <td>○<br>時<br>津<br>海</td>
+        <td>○<br>玉<br>乃<br>島</td>
+        <td>○<br>時<br>天<br>空</td>
+        <td>●<br>琴<br>奨<br>菊</td>
+        <td>●<br>豊<br>真<br>将</td>
+        <td>○<br>露<br>鵬</td>
+        <td>○<br>栃<br>乃<br>洋</td>
+        <td>●<br>琴<br>欧<br>洲</td>
+        <td>○<br>玉<br>春<br>日</td>
+        <td>●<br>琴<br>光<br>喜</td>
+        <td>○<br>春<br>日<br>王</td>
+        <td>●<br>稀<br>勢<br>の<br>里</td>
+        <td>○<br>豪<br>風</td>
+      </tr>
+    </table>
+  </td>
+</tr>
+<tr align="center" valign="top">
+  <td>
+    <b>豊響　★</b><br>
+    7勝8敗<br>
+    <table border=0 cellpadding=1 cellspacing=1>
+      <tr align=center valign=top>
+        <td>●<br>雅<br>山</td>
+        <td>○<br>玉<br>乃<br>島</td>
+        <td>●<br>豪<br>風</td>
+        <td>○<br>若<br>の<br>里</td>
+        <td>○<br>琴<br>奨<br>菊</td>
+        <td>○<br>時<br>津<br>海</td>
+        <td>○<br>豊<br>ノ<br>島</td>
+        <td>●<br>出<br>島</td>
+        <td>●<br>春<br>日<br>王</td>
+        <td>●<br>旭<br>天<br>鵬</td>
+        <td>○<br>栃<br>煌<br>山</td>
+        <td>●<br>垣<br>添</td>
+        <td>●<br>玉<br>春<br>日</td>
+        <td>○<br>高<br>見<br>盛</td>
+        <td>●<br>普<br>天<br>王</td>
+      </tr>
+    </table>
+  </td>
+  <th nowrap valign="middle">前<br>頭<br>6<br>枚<br>目</th>
+  <td>
+    <b>海鵬　★</b><br>
+    4勝11敗<br>
+    <table border=0 cellpadding=1 cellspacing=1>
+      <tr align=center valign=top>
+        <td>○<br>玉<br>乃<br>島</td>
+        <td>○<br>雅<br>山</td>
+        <td>●<br>若<br>の<br>里</td>
+        <td>●<br>露<br>鵬</td>
+        <td>●<br>高<br>見<br>盛</td>
+        <td>●<br>豊<br>ノ<br>島</td>
+        <td>●<br>土<br>佐<br>ノ<br>海</td>
+        <td>●<br>琴<br>奨<br>菊</td>
+        <td>●<br>時<br>津<br>海</td>
+        <td>●<br>岩<br>木<br>山</td>
+        <td>●<br>黒<br>海</td>
+        <td>●<br>栃<br>乃<br>洋</td>
+        <td>○<br>龍<br>皇</td>
+        <td>○<br>北<br>桜</td>
+        <td>●<br>春<br>日<br>錦</td>
+      </tr>
+    </table>
+  </td>
+</tr>
+<tr align="center" valign="top">
+  <td>
+    <b>玉乃島　☆</b><br>
+    8勝7敗<br>
+    <table border=0 cellpadding=1 cellspacing=1>
+      <tr align=center valign=top>
+        <td>●<br>海<br>鵬</td>
+        <td>●<br>豊<br>響</td>
+        <td>○<br>豊<br>ノ<br>島</td>
+        <td>●<br>雅<br>山</td>
+        <td>○<br>岩<br>木<br>山</td>
+        <td>○<br>露<br>鵬</td>
+        <td>○<br>豪<br>風</td>
+        <td>○<br>土<br>佐<br>ノ<br>海</td>
+        <td>●<br>普<br>天<br>王</td>
+        <td>●<br>琴<br>奨<br>菊</td>
+        <td>●<br>高<br>見<br>盛</td>
+        <td>●<br>出<br>島</td>
+        <td>○<br>栃<br>煌<br>山</td>
+        <td>○<br>時<br>津<br>海</td>
+        <td>○<br>黒<br>海</td>
+      </tr>
+    </table>
+  </td>
+  <th nowrap valign="middle">前<br>頭<br>7<br>枚<br>目</th>
+  <td>
+    <b>時津海　★</b><br>
+    5勝10敗<br>
+    <table border=0 cellpadding=1 cellspacing=1>
+      <tr align=center valign=top>
+        <td>●<br>豪<br>風</td>
+        <td>●<br>土<br>佐<br>ノ<br>海</td>
+        <td>●<br>雅<br>山</td>
+        <td>●<br>岩<br>木<br>山</td>
+        <td>●<br>春<br>日<br>王</td>
+        <td>●<br>豊<br>響</td>
+        <td>●<br>若<br>の<br>里</td>
+        <td>○<br>北<br>勝<br>力</td>
+        <td>○<br>海<br>鵬</td>
+        <td>●<br>高<br>見<br>盛</td>
+        <td>○<br>露<br>鵬</td>
+        <td>○<br>北<br>桜</td>
+        <td>●<br>黒<br>海</td>
+        <td>●<br>玉<br>乃<br>島</td>
+        <td>○<br>栃<br>乃<br>洋</td>
+      </tr>
+    </table>
+  </td>
+</tr>
+<tr align="center" valign="top">
+  <td>
+    <b>豪風　☆</b><br>
+    9勝6敗<br>
+    <table border=0 cellpadding=1 cellspacing=1>
+      <tr align=center valign=top>
+        <td>○<br>時<br>津<br>海</td>
+        <td>○<br>露<br>鵬</td>
+        <td>○<br>豊<br>響</td>
+        <td>●<br>普<br>天<br>王</td>
+        <td>○<br>玉<br>春<br>日</td>
+        <td>○<br>春<br>日<br>王</td>
+        <td>●<br>玉<br>乃<br>島</td>
+        <td>○<br>岩<br>木<br>山</td>
+        <td>○<br>黒<br>海</td>
+        <td>○<br>豊<br>ノ<br>島</td>
+        <td>●<br>豪<br>栄<br>道</td>
+        <td>●<br>琴<br>欧<br>洲</td>
+        <td>●<br>旭<br>天<br>鵬</td>
+        <td>○<br>栃<br>煌<br>山</td>
+        <td>●<br>雅<br>山</td>
+      </tr>
+    </table>
+  </td>
+  <th nowrap valign="middle">前<br>頭<br>8<br>枚<br>目</th>
+  <td>
+    <b>土佐ノ海　★</b><br>
+    6勝9敗<br>
+    <table border=0 cellpadding=1 cellspacing=1>
+      <tr align=center valign=top>
+        <td>●<br>露<br>鵬</td>
+        <td>○<br>時<br>津<br>海</td>
+        <td>●<br>春<br>日<br>王</td>
+        <td>●<br>豊<br>ノ<br>島</td>
+        <td>●<br>普<br>天<br>王</td>
+        <td>●<br>玉<br>春<br>日</td>
+        <td>○<br>海<br>鵬</td>
+        <td>●<br>玉<br>乃<br>島</td>
+        <td>○<br>岩<br>木<br>山</td>
+        <td>○<br>龍<br>皇</td>
+        <td>○<br>北<br>勝<br>力</td>
+        <td>●<br>白<br>露<br>山</td>
+        <td>●<br>嘉<br>風</td>
+        <td>●<br>黒<br>海</td>
+        <td>○<br>栃<br>煌<br>山</td>
+      </tr>
+    </table>
+  </td>
+</tr>
+<tr align="center" valign="top">
+  <td>
+    <b>露鵬　★</b><br>
+    6勝9敗<br>
+    <table border=0 cellpadding=1 cellspacing=1>
+      <tr align=center valign=top>
+        <td>○<br>土<br>佐<br>ノ<br>海</td>
+        <td>●<br>豪<br>風</td>
+        <td>●<br>玉<br>春<br>日</td>
+        <td>○<br>海<br>鵬</td>
+        <td>○<br>旭<br>天<br>鵬</td>
+        <td>●<br>玉<br>乃<br>島</td>
+        <td>○<br>普<br>天<br>王</td>
+        <td>●<br>雅<br>山</td>
+        <td>●<br>垣<br>添</td>
+        <td>●<br>栃<br>煌<br>山</td>
+        <td>●<br>時<br>津<br>海</td>
+        <td>○<br>龍<br>皇</td>
+        <td>●<br>北<br>桜</td>
+        <td>●<br>嘉<br>風</td>
+        <td>○<br>北<br>勝<br>力</td>
+      </tr>
+    </table>
+  </td>
+  <th nowrap valign="middle">前<br>頭<br>9<br>枚<br>目</th>
+  <td>
+    <b>高見盛　☆</b><br>
+    8勝7敗<br>
+    <table border=0 cellpadding=1 cellspacing=1>
+      <tr align=center valign=top>
+        <td>○<br>岩<br>木<br>山</td>
+        <td>●<br>春<br>日<br>王</td>
+        <td>●<br>普<br>天<br>王</td>
+        <td>●<br>旭<br>天<br>鵬</td>
+        <td>○<br>海<br>鵬</td>
+        <td>●<br>黒<br>海</td>
+        <td>●<br>栃<br>煌<br>山</td>
+        <td>●<br>嘉<br>風</td>
+        <td>○<br>龍<br>皇</td>
+        <td>○<br>時<br>津<br>海</td>
+        <td>○<br>玉<br>乃<br>島</td>
+        <td>○<br>春<br>日<br>錦</td>
+        <td>○<br>白<br>露<br>山</td>
+        <td>●<br>豊<br>響</td>
+        <td>○<br>垣<br>添</td>
+      </tr>
+    </table>
+  </td>
+</tr>
+<tr align="center" valign="top">
+  <td>
+    <b>岩木山　★</b><br>
+    4勝11敗<br>
+    <table border=0 cellpadding=1 cellspacing=1>
+      <tr align=center valign=top>
+        <td>●<br>高<br>見<br>盛</td>
+        <td>●<br>玉<br>春<br>日</td>
+        <td>●<br>旭<br>天<br>鵬</td>
+        <td>○<br>時<br>津<br>海</td>
+        <td>●<br>玉<br>乃<br>島</td>
+        <td>○<br>栃<br>煌<br>山</td>
+        <td>○<br>黒<br>海</td>
+        <td>●<br>豪<br>風</td>
+        <td>●<br>土<br>佐<br>ノ<br>海</td>
+        <td>○<br>海<br>鵬</td>
+        <td>●<br>龍<br>皇</td>
+        <td>●<br>嘉<br>風</td>
+        <td>●<br>普<br>天<br>王</td>
+        <td>●<br>春<br>日<br>錦</td>
+        <td>●<br>白<br>露<br>山</td>
+      </tr>
+    </table>
+  </td>
+  <th nowrap valign="middle">前<br>頭<br>10<br>枚<br>目</th>
+  <td>
+    <b>春日王　☆</b><br>
+    10勝5敗<br>
+    <table border=0 cellpadding=1 cellspacing=1>
+      <tr align=center valign=top>
+        <td>○<br>玉<br>春<br>日</td>
+        <td>○<br>高<br>見<br>盛</td>
+        <td>○<br>土<br>佐<br>ノ<br>海</td>
+        <td>○<br>龍<br>皇</td>
+        <td>○<br>時<br>津<br>海</td>
+        <td>●<br>豪<br>風</td>
+        <td>○<br>白<br>露<br>山</td>
+        <td>●<br>栃<br>煌<br>山</td>
+        <td>○<br>豊<br>響</td>
+        <td>●<br>豪<br>栄<br>道</td>
+        <td>○<br>旭<br>天<br>鵬</td>
+        <td>○<br>普<br>天<br>王</td>
+        <td>●<br>雅<br>山</td>
+        <td>○<br>琴<br>欧<br>洲</td>
+        <td>●<br>鶴<br>竜</td>
+      </tr>
+    </table>
+  </td>
+</tr>
+<tr align="center" valign="top">
+  <td>
+    <b>玉春日　☆</b><br>
+    8勝7敗<br>
+    <table border=0 cellpadding=1 cellspacing=1>
+      <tr align=center valign=top>
+        <td>●<br>春<br>日<br>王</td>
+        <td>○<br>岩<br>木<br>山</td>
+        <td>○<br>露<br>鵬</td>
+        <td>●<br>豪<br>栄<br>道</td>
+        <td>●<br>豪<br>風</td>
+        <td>○<br>土<br>佐<br>ノ<br>海</td>
+        <td>○<br>嘉<br>風</td>
+        <td>○<br>春<br>日<br>錦</td>
+        <td>●<br>栃<br>煌<br>山</td>
+        <td>●<br>垣<br>添</td>
+        <td>●<br>雅<br>山</td>
+        <td>○<br>黒<br>海</td>
+        <td>○<br>豊<br>響</td>
+        <td>○<br>龍<br>皇</td>
+        <td>●<br>旭<br>天<br>鵬</td>
+      </tr>
+    </table>
+  </td>
+  <th nowrap valign="middle">前<br>頭<br>11<br>枚<br>目</th>
+  <td>
+    <b>普天王　☆</b><br>
+    8勝7敗<br>
+    <table border=0 cellpadding=1 cellspacing=1>
+      <tr align=center valign=top>
+        <td>●<br>黒<br>海</td>
+        <td>●<br>旭<br>天<br>鵬</td>
+        <td>○<br>高<br>見<br>盛</td>
+        <td>○<br>豪<br>風</td>
+        <td>○<br>土<br>佐<br>ノ<br>海</td>
+        <td>○<br>春<br>日<br>錦</td>
+        <td>●<br>露<br>鵬</td>
+        <td>●<br>豪<br>栄<br>道</td>
+        <td>○<br>玉<br>乃<br>島</td>
+        <td>●<br>嘉<br>風</td>
+        <td>○<br>北<br>桜</td>
+        <td>●<br>春<br>日<br>王</td>
+        <td>○<br>岩<br>木<br>山</td>
+        <td>●<br>白<br>露<br>山</td>
+        <td>○<br>豊<br>響</td>
+      </tr>
+    </table>
+  </td>
+</tr>
+<tr align="center" valign="top">
+  <td>
+    <b>黒海　★</b><br>
+    7勝8敗<br>
+    <table border=0 cellpadding=1 cellspacing=1>
+      <tr align=center valign=top>
+        <td>○<br>普<br>天<br>王</td>
+        <td>●<br>龍<br>皇</td>
+        <td>○<br>北<br>桜</td>
+        <td>●<br>嘉<br>風</td>
+        <td>●<br>垣<br>添</td>
+        <td>○<br>高<br>見<br>盛</td>
+        <td>●<br>岩<br>木<br>山</td>
+        <td>●<br>白<br>露<br>山</td>
+        <td>●<br>豪<br>風</td>
+        <td>○<br>春<br>日<br>錦</td>
+        <td>○<br>海<br>鵬</td>
+        <td>●<br>玉<br>春<br>日</td>
+        <td>○<br>時<br>津<br>海</td>
+        <td>○<br>土<br>佐<br>ノ<br>海</td>
+        <td>●<br>玉<br>乃<br>島</td>
+      </tr>
+    </table>
+  </td>
+  <th nowrap valign="middle">前<br>頭<br>12<br>枚<br>目</th>
+  <td>
+    <b>旭天鵬　☆</b><br>
+    12勝3敗<br>
+    <table border=0 cellpadding=1 cellspacing=1>
+      <tr align=center valign=top>
+        <td>○<br>龍<br>皇</td>
+        <td>○<br>普<br>天<br>王</td>
+        <td>○<br>岩<br>木<br>山</td>
+        <td>○<br>高<br>見<br>盛</td>
+        <td>●<br>露<br>鵬</td>
+        <td>○<br>白<br>露<br>山</td>
+        <td>○<br>春<br>日<br>錦</td>
+        <td>○<br>北<br>桜</td>
+        <td>●<br>豪<br>栄<br>道</td>
+        <td>○<br>豊<br>響</td>
+        <td>●<br>春<br>日<br>王</td>
+        <td>○<br>栃<br>煌<br>山</td>
+        <td>○<br>豪<br>風</td>
+        <td>○<br>安<br>馬</td>
+        <td>○<br>玉<br>春<br>日</td>
+      </tr>
+    </table>
+  </td>
+</tr>
+<tr align="center" valign="top">
+  <td>
+    <b>龍皇　★</b><br>
+    3勝12敗<br>
+    <table border=0 cellpadding=1 cellspacing=1>
+      <tr align=center valign=top>
+        <td>●<br>旭<br>天<br>鵬</td>
+        <td>○<br>黒<br>海</td>
+        <td>●<br>春<br>日<br>錦</td>
+        <td>●<br>春<br>日<br>王</td>
+        <td>●<br>白<br>露<br>山</td>
+        <td>○<br>嘉<br>風</td>
+        <td>●<br>豪<br>栄<br>道</td>
+        <td>●<br>垣<br>添</td>
+        <td>●<br>高<br>見<br>盛</td>
+        <td>●<br>土<br>佐<br>ノ<br>海</td>
+        <td>○<br>岩<br>木<br>山</td>
+        <td>●<br>露<br>鵬</td>
+        <td>●<br>海<br>鵬</td>
+        <td>●<br>玉<br>春<br>日</td>
+        <td>●<br>北<br>桜</td>
+      </tr>
+    </table>
+  </td>
+  <th nowrap valign="middle">前<br>頭<br>13<br>枚<br>目</th>
+  <td>
+    <b>栃煌山　★</b><br>
+    7勝8敗<br>
+    <table border=0 cellpadding=1 cellspacing=1>
+      <tr align=center valign=top>
+        <td>○<br>北<br>桜</td>
+        <td>○<br>豪<br>栄<br>道</td>
+        <td>○<br>白<br>露<br>山</td>
+        <td>●<br>垣<br>添</td>
+        <td>●<br>嘉<br>風</td>
+        <td>●<br>岩<br>木<br>山</td>
+        <td>○<br>高<br>見<br>盛</td>
+        <td>○<br>春<br>日<br>王</td>
+        <td>○<br>玉<br>春<br>日</td>
+        <td>○<br>露<br>鵬</td>
+        <td>●<br>豊<br>響</td>
+        <td>●<br>旭<br>天<br>鵬</td>
+        <td>●<br>玉<br>乃<br>島</td>
+        <td>●<br>豪<br>風</td>
+        <td>●<br>土<br>佐<br>ノ<br>海</td>
+      </tr>
+    </table>
+  </td>
+</tr>
+<tr align="center" valign="top">
+  <td>
+    <b>北桜　★</b><br>
+    4勝11敗<br>
+    <table border=0 cellpadding=1 cellspacing=1>
+      <tr align=center valign=top>
+        <td>●<br>栃<br>煌<br>山</td>
+        <td>●<br>嘉<br>風</td>
+        <td>●<br>黒<br>海</td>
+        <td>●<br>春<br>日<br>錦</td>
+        <td>○<br>白<br>馬</td>
+        <td>●<br>豪<br>栄<br>道</td>
+        <td>●<br>垣<br>添</td>
+        <td>●<br>旭<br>天<br>鵬</td>
+        <td>○<br>栃<br>乃<br>花</td>
+        <td>●<br>寶<br>智<br>山</td>
+        <td>●<br>普<br>天<br>王</td>
+        <td>●<br>時<br>津<br>海</td>
+        <td>○<br>露<br>鵬</td>
+        <td>●<br>海<br>鵬</td>
+        <td>○<br>龍<br>皇</td>
+      </tr>
+    </table>
+  </td>
+  <th nowrap valign="middle">前<br>頭<br>14<br>枚<br>目</th>
+  <td>
+    <b>豪栄道　☆</b><br>
+    11勝4敗<br>
+    <table border=0 cellpadding=1 cellspacing=1>
+      <tr align=center valign=top>
+        <td>○<br>白<br>露<br>山</td>
+        <td>●<br>栃<br>煌<br>山</td>
+        <td>○<br>垣<br>添</td>
+        <td>○<br>玉<br>春<br>日</td>
+        <td>○<br>春<br>日<br>錦</td>
+        <td>○<br>北<br>桜</td>
+        <td>○<br>龍<br>皇</td>
+        <td>○<br>普<br>天<br>王</td>
+        <td>○<br>旭<br>天<br>鵬</td>
+        <td>○<br>春<br>日<br>王</td>
+        <td>○<br>豪<br>風</td>
+        <td>●<br>安<br>馬</td>
+        <td>●<br>千<br>代<br>大<br>海</td>
+        <td>●<br>白<br>鵬</td>
+        <td>○<br>嘉<br>風</td>
+      </tr>
+    </table>
+  </td>
+</tr>
+<tr align="center" valign="top">
+  <td>
+    <b>白露山　☆</b><br>
+    9勝6敗<br>
+    <table border=0 cellpadding=1 cellspacing=1>
+      <tr align=center valign=top>
+        <td>●<br>豪<br>栄<br>道</td>
+        <td>○<br>垣<br>添</td>
+        <td>●<br>栃<br>煌<br>山</td>
+        <td>●<br>若<br>麒<br>麟</td>
+        <td>○<br>龍<br>皇</td>
+        <td>●<br>旭<br>天<br>鵬</td>
+        <td>●<br>春<br>日<br>王</td>
+        <td>○<br>黒<br>海</td>
+        <td>○<br>嘉<br>風</td>
+        <td>○<br>若<br>ノ<br>鵬</td>
+        <td>○<br>春<br>日<br>錦</td>
+        <td>○<br>土<br>佐<br>ノ<br>海</td>
+        <td>●<br>高<br>見<br>盛</td>
+        <td>○<br>普<br>天<br>王</td>
+        <td>○<br>岩<br>木<br>山</td>
+      </tr>
+    </table>
+  </td>
+  <th nowrap valign="middle">前<br>頭<br>15<br>枚<br>目</th>
+  <td>
+    <b>嘉風　☆</b><br>
+    10勝5敗<br>
+    <table border=0 cellpadding=1 cellspacing=1>
+      <tr align=center valign=top>
+        <td>●<br>春<br>日<br>錦</td>
+        <td>○<br>北<br>桜</td>
+        <td>○<br>皇<br>司</td>
+        <td>○<br>黒<br>海</td>
+        <td>○<br>栃<br>煌<br>山</td>
+        <td>●<br>龍<br>皇</td>
+        <td>●<br>玉<br>春<br>日</td>
+        <td>○<br>高<br>見<br>盛</td>
+        <td>●<br>白<br>露<br>山</td>
+        <td>○<br>普<br>天<br>王</td>
+        <td>○<br>垣<br>添</td>
+        <td>○<br>岩<br>木<br>山</td>
+        <td>○<br>土<br>佐<br>ノ<br>海</td>
+        <td>○<br>露<br>鵬</td>
+        <td>●<br>豪<br>栄<br>道</td>
+      </tr>
+    </table>
+  </td>
+</tr>
+<tr align="center" valign="top">
+  <td>
+    <b>春日錦　★</b><br>
+    7勝8敗<br>
+    <table border=0 cellpadding=1 cellspacing=1>
+      <tr align=center valign=top>
+        <td>○<br>嘉<br>風</td>
+        <td>○<br>若<br>ノ<br>鵬</td>
+        <td>○<br>龍<br>皇</td>
+        <td>○<br>北<br>桜</td>
+        <td>●<br>豪<br>栄<br>道</td>
+        <td>●<br>普<br>天<br>王</td>
+        <td>●<br>旭<br>天<br>鵬</td>
+        <td>●<br>玉<br>春<br>日</td>
+        <td>●<br>潮<br>丸</td>
+        <td>●<br>黒<br>海</td>
+        <td>●<br>白<br>露<br>山</td>
+        <td>●<br>高<br>見<br>盛</td>
+        <td>○<br>垣<br>添</td>
+        <td>○<br>岩<br>木<br>山</td>
+        <td>○<br>海<br>鵬</td>
+      </tr>
+    </table>
+  </td>
+  <th nowrap valign="middle">前<br>頭<br>16<br>枚<br>目</th>
+  <td>
+    <b>垣添　☆</b><br>
+    9勝6敗<br>
+    <table border=0 cellpadding=1 cellspacing=1>
+      <tr align=center valign=top>
+        <td>○<br>寶<br>智<br>山</td>
+        <td>●<br>白<br>露<br>山</td>
+        <td>●<br>豪<br>栄<br>道</td>
+        <td>○<br>栃<br>煌<br>山</td>
+        <td>○<br>黒<br>海</td>
+        <td>○<br>豊<br>桜</td>
+        <td>○<br>北<br>桜</td>
+        <td>○<br>龍<br>皇</td>
+        <td>○<br>露<br>鵬</td>
+        <td>○<br>玉<br>春<br>日</td>
+        <td>●<br>嘉<br>風</td>
+        <td>○<br>豊<br>響</td>
+        <td>●<br>春<br>日<br>錦</td>
+        <td>●<br>琴<br>奨<br>菊</td>
+        <td>●<br>高<br>見<br>盛</td>
+      </tr>
+    </table>
+  </td>
+</tr>
+</table>
+
+<table border=0 cellpadding=0 cellspacing=0><tr><td>　</td></tr></table>
+
+</td>
+</tr>
+</table>
+
+<!-- SpaceID=0 robot -->
+
+<!-- YAHOO! JAPAN SCOREBOARD UNDER BANNER START -->
+<center>
+<hr size=1>
+<small>
+<a href="http://help.yahoo.co.jp/help/jp/sports/sports-17.html">免責事項</a> -
+<a href="http://help.yahoo.co.jp/help/jp/sports/">ヘルプ・お問い合わせ</a> - <a href=http://rd.yahoo.co.jp/media/sports/footer/feedback/*http://ms.yahoo.co.jp/bin/yadv-info/feedback/>ご意見・ご要望</a><br>
+Copyright (C) 2010 毎日新聞社 記事の無断転用を禁じます。 <br />
+Copyright (C) 2010 Yahoo Japan Corporation. All Rights Reserved. <br />
+</small>
+</center>
+<!-- YAHOO! JAPAN SCOREBOARD UNDER BANNER END -->
+</body>
+</html>

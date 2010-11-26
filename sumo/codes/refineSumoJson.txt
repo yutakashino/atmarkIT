@@ -1,0 +1,363 @@
+[
+  {
+    "op": "core/column-addition",
+    "description": "Create column win at index 1 based on column <html> using expression grel:if(contains(value, \"\u25cb\"), 1, if(contains(value, \"\u25a1\"), 1, if(contains(value, \"\u25cf\"), 0, if(contains(value, \"\u25a0\"), 0, if(contains(value, \"\u3084\"), -1, -100)))))",
+    "engineConfig": {
+      "facets": [
+        {
+          "query": "",
+          "name": "<html>",
+          "caseSensitive": false,
+          "columnName": "<html>",
+          "type": "text",
+          "mode": "text"
+        }
+      ],
+      "mode": "row-based"
+    },
+    "newColumnName": "win",
+    "columnInsertIndex": 1,
+    "baseColumnName": "<html>",
+    "expression": "grel:if(contains(value, \"\u25cb\"), 1, if(contains(value, \"\u25a1\"), 1, if(contains(value, \"\u25cf\"), 0, if(contains(value, \"\u25a0\"), 0, if(contains(value, \"\u3084\"), -1, -100)))))",
+    "onError": "set-to-blank"
+  },
+  {
+    "op": "core/column-addition",
+    "description": "Create column rikishi at index 1 based on column <html> using expression grel:value",
+    "engineConfig": {
+      "facets": [
+        {
+          "query": "</b",
+          "name": "<html>",
+          "caseSensitive": false,
+          "columnName": "<html>",
+          "type": "text",
+          "mode": "text"
+        }
+      ],
+      "mode": "row-based"
+    },
+    "newColumnName": "rikishi",
+    "columnInsertIndex": 1,
+    "baseColumnName": "<html>",
+    "expression": "grel:value",
+    "onError": "set-to-blank"
+  },
+  {
+    "op": "core/text-transform",
+    "description": "Text transform on cells in column rikishi using expression grel:value.replace(\"\u3000\u2606\",\"\")",
+    "engineConfig": {
+      "facets": [
+        {
+          "query": "",
+          "name": "<html>",
+          "caseSensitive": false,
+          "columnName": "<html>",
+          "type": "text",
+          "mode": "text"
+        }
+      ],
+      "mode": "row-based"
+    },
+    "columnName": "rikishi",
+    "expression": "grel:value.replace(\"\u3000\u2606\",\"\")",
+    "onError": "set-to-blank",
+    "repeat": false,
+    "repeatCount": 10
+  },
+  {
+    "op": "core/text-transform",
+    "description": "Text transform on cells in column rikishi using expression grel:value.replace(\"\u3000\u2605\",\"\")",
+    "engineConfig": {
+      "facets": [
+        {
+          "query": "",
+          "name": "<html>",
+          "caseSensitive": false,
+          "columnName": "<html>",
+          "type": "text",
+          "mode": "text"
+        }
+      ],
+      "mode": "row-based"
+    },
+    "columnName": "rikishi",
+    "expression": "grel:value.replace(\"\u3000\u2605\",\"\")",
+    "onError": "set-to-blank",
+    "repeat": false,
+    "repeatCount": 10
+  },
+  {
+    "op": "core/text-transform",
+    "description": "Text transform on cells in column rikishi using expression grel:replace(value,/<\\/?\\w+((\\s+\\w+(\\s*=\\s*(?:\".*?\"|'.*?'|[^'\">\\s]+))?)+\\s*|\\s*)\\/?>/,'')",
+    "engineConfig": {
+      "facets": [
+        {
+          "query": "",
+          "name": "<html>",
+          "caseSensitive": false,
+          "columnName": "<html>",
+          "type": "text",
+          "mode": "text"
+        }
+      ],
+      "mode": "row-based"
+    },
+    "columnName": "rikishi",
+    "expression": "grel:replace(value,/<\\/?\\w+((\\s+\\w+(\\s*=\\s*(?:\".*?\"|'.*?'|[^'\">\\s]+))?)+\\s*|\\s*)\\/?>/,'')",
+    "onError": "set-to-blank",
+    "repeat": false,
+    "repeatCount": 10
+  },
+  {
+    "op": "core/text-transform",
+    "description": "Text transform on cells in column rikishi using expression grel:value.replace(\" \",\"\")",
+    "engineConfig": {
+      "facets": [
+        {
+          "query": "",
+          "name": "<html>",
+          "caseSensitive": false,
+          "columnName": "<html>",
+          "type": "text",
+          "mode": "text"
+        }
+      ],
+      "mode": "row-based"
+    },
+    "columnName": "rikishi",
+    "expression": "grel:value.replace(\" \",\"\")",
+    "onError": "set-to-blank",
+    "repeat": false,
+    "repeatCount": 10
+  },
+  {
+    "op": "core/fill-down",
+    "description": "Fill down cells in column rikishi",
+    "engineConfig": {
+      "facets": [
+        {
+          "query": "",
+          "name": "<html>",
+          "caseSensitive": false,
+          "columnName": "<html>",
+          "type": "text",
+          "mode": "text"
+        }
+      ],
+      "mode": "row-based"
+    },
+    "columnName": "rikishi"
+  },
+  {
+    "op": "core/row-removal",
+    "description": "Remove rows",
+    "engineConfig": {
+      "facets": [
+        {
+          "query": "",
+          "name": "<html>",
+          "caseSensitive": false,
+          "columnName": "<html>",
+          "type": "text",
+          "mode": "text"
+        },
+        {
+          "query": "-100",
+          "name": "win",
+          "caseSensitive": false,
+          "columnName": "win",
+          "type": "text",
+          "mode": "text"
+        }
+      ],
+      "mode": "row-based"
+    }
+  },
+  {
+    "op": "core/text-transform",
+    "description": "Text transform on cells in column <html> using expression grel:replace(value,/<\\/?\\w+((\\s+\\w+(\\s*=\\s*(?:\".*?\"|'.*?'|[^'\">\\s]+))?)+\\s*|\\s*)\\/?>/,'')",
+    "engineConfig": {
+      "facets": [
+        {
+          "query": "",
+          "name": "<html>",
+          "caseSensitive": false,
+          "columnName": "<html>",
+          "type": "text",
+          "mode": "text"
+        },
+        {
+          "query": "",
+          "name": "win",
+          "caseSensitive": false,
+          "columnName": "win",
+          "type": "text",
+          "mode": "text"
+        }
+      ],
+      "mode": "row-based"
+    },
+    "columnName": "<html>",
+    "expression": "grel:replace(value,/<\\/?\\w+((\\s+\\w+(\\s*=\\s*(?:\".*?\"|'.*?'|[^'\">\\s]+))?)+\\s*|\\s*)\\/?>/,'')",
+    "onError": "set-to-blank",
+    "repeat": false,
+    "repeatCount": 10
+  },
+  {
+    "op": "core/text-transform",
+    "description": "Text transform on cells in column <html> using expression grel:value.replace(\"\u25cb\",\"\")",
+    "engineConfig": {
+      "facets": [
+        {
+          "query": "",
+          "name": "<html>",
+          "caseSensitive": false,
+          "columnName": "<html>",
+          "type": "text",
+          "mode": "text"
+        },
+        {
+          "query": "",
+          "name": "win",
+          "caseSensitive": false,
+          "columnName": "win",
+          "type": "text",
+          "mode": "text"
+        }
+      ],
+      "mode": "row-based"
+    },
+    "columnName": "<html>",
+    "expression": "grel:value.replace(\"\u25cb\",\"\")",
+    "onError": "set-to-blank",
+    "repeat": false,
+    "repeatCount": 10
+  },
+  {
+    "op": "core/text-transform",
+    "description": "Text transform on cells in column <html> using expression grel:value.replace(\"\u25cf\",\"\")",
+    "engineConfig": {
+      "facets": [
+        {
+          "query": "",
+          "name": "<html>",
+          "caseSensitive": false,
+          "columnName": "<html>",
+          "type": "text",
+          "mode": "text"
+        },
+        {
+          "query": "",
+          "name": "win",
+          "caseSensitive": false,
+          "columnName": "win",
+          "type": "text",
+          "mode": "text"
+        }
+      ],
+      "mode": "row-based"
+    },
+    "columnName": "<html>",
+    "expression": "grel:value.replace(\"\u25cf\",\"\")",
+    "onError": "set-to-blank",
+    "repeat": false,
+    "repeatCount": 10
+  },
+  {
+    "op": "core/text-transform",
+    "description": "Text transform on cells in column <html> using expression grel:value.replace(\"\u25a1\",\"\")",
+    "engineConfig": {
+      "facets": [
+        {
+          "query": "",
+          "name": "<html>",
+          "caseSensitive": false,
+          "columnName": "<html>",
+          "type": "text",
+          "mode": "text"
+        },
+        {
+          "query": "",
+          "name": "win",
+          "caseSensitive": false,
+          "columnName": "win",
+          "type": "text",
+          "mode": "text"
+        }
+      ],
+      "mode": "row-based"
+    },
+    "columnName": "<html>",
+    "expression": "grel:value.replace(\"\u25a1\",\"\")",
+    "onError": "set-to-blank",
+    "repeat": false,
+    "repeatCount": 10
+  },
+  {
+    "op": "core/text-transform",
+    "description": "Text transform on cells in column <html> using expression grel:value.replace(\"\u25a0\",\"\")",
+    "engineConfig": {
+      "facets": [
+        {
+          "query": "",
+          "name": "<html>",
+          "caseSensitive": false,
+          "columnName": "<html>",
+          "type": "text",
+          "mode": "text"
+        },
+        {
+          "query": "",
+          "name": "win",
+          "caseSensitive": false,
+          "columnName": "win",
+          "type": "text",
+          "mode": "text"
+        }
+      ],
+      "mode": "row-based"
+    },
+    "columnName": "<html>",
+    "expression": "grel:value.replace(\"\u25a0\",\"\")",
+    "onError": "set-to-blank",
+    "repeat": false,
+    "repeatCount": 10
+  },
+  {
+    "op": "core/text-transform",
+    "description": "Text transform on cells in column <html> using expression grel:value.replace(\" \",\"\")",
+    "engineConfig": {
+      "facets": [
+        {
+          "query": "",
+          "name": "<html>",
+          "caseSensitive": false,
+          "columnName": "<html>",
+          "type": "text",
+          "mode": "text"
+        },
+        {
+          "query": "",
+          "name": "win",
+          "caseSensitive": false,
+          "columnName": "win",
+          "type": "text",
+          "mode": "text"
+        }
+      ],
+      "mode": "row-based"
+    },
+    "columnName": "<html>",
+    "expression": "grel:value.replace(\" \",\"\")",
+    "onError": "set-to-blank",
+    "repeat": false,
+    "repeatCount": 10
+  },
+  {
+    "op": "core/column-rename",
+    "description": "Rename column <html> to vs",
+    "oldColumnName": "<html>",
+    "newColumnName": "vs"
+  }
+]

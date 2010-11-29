@@ -1,0 +1,68 @@
+https://github.com/yutakashino/atmarkIT/raw/master/sumo/codes/yahooSportsUTF/199901.utf.txt
+
+https://github.com/yutakashino/atmarkIT/raw/master/sumo/codes/refineSumoJson.txt 
+
+1 core/column-addition
+
+if(contains(value, "○"), 1, if(contains(value, "□"), 1, if(contains(value, "●"), 0, if(contains(value, "■"), 0, if(contains(value, "や"), -1, -100)))))
+
+"newColumnName": "win",
+
+
+2 core/column-addition
+
+"query": "</b",
+"name": "<html>",
+
+"newColumnName": "rikishi",
+
+3 core/text-transform
+
+value.replace("　★","")
+
+4 core/text-transform
+
+value.replace("　☆","")
+
+5 core/text-transform
+
+replace(value,/<\\/?\\w+((\\s+\\w+(\\s*=\\s*(?:\".*?\"|'.*?'|[^'\">\\s]+))?)+\\s*|\\s*)\\/?>/,'')
+
+6 core/text-transform 
+
+value.replace(\" \",\"\")
+
+7 core/fill-down
+
+8 core/row-removal
+
+"query": "-100",
+"name": "win",
+
+9 core/text-transform
+
+replace(value,<\\/?\\w+((\\s+\\w+(\\s*=\\s*(?:\".*?\"|'.*?'|[^'\">\\s]+))?)+\\s*|\\s*)\\/?>,'')
+
+10 core/text-transform
+
+value.replace(\"\u25cb\",\"\")
+
+11 core/text-transform
+
+grel:value.replace(\"\u25cf\",\"\")
+
+12 core/text-transform
+
+value.replace(\"\u25a1\",\"\")
+
+13 core/text-transform
+
+value.replace(\"\u25a0\",\"\")
+
+14 core/text-transform
+
+value.replace(\" \",\"\")
+
+15 column-rename
+
+vs

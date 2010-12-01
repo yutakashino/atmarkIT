@@ -1,7 +1,9 @@
-setwd("/Users/yutakashino/Dropbox/sandboxDrop/@IT/sandbox/sumo/codes/")
+#setwd("/Users/yutakashino/Dropbox/sandboxDrop/@IT/sandbox/sumo/codes/")
 library(plyr)
-fn <- file("out.csv", open="r", encoding="utf-8")
-df <- read.csv(file = fn, header = FALSE)
+#fn <- file("out.csv", open="r", encoding="utf-8")
+#df <- read.csv(file = fn, header = FALSE)
+
+df <- read.csv("https://spreadsheets.google.com/pub?key=0AlBuJgqcP5f3dElpb0lWcDRjZldkMzE1LW5aY1VtMHc&hl=en&single=true&gid=0&output=csv", header=FALSE)
 names(df) <- c("rikishi", "vs", "win", "year", "month")
 nrow(df)
 df <- subset(df, df$win!=-100 & df$win!=-1)

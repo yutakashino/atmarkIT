@@ -1,0 +1,165 @@
+> source("sumoregression2.R")
+
+
+> head(df0)
+  rikishi       vs win year month
+1  貴乃花     琴錦   0 1999     1
+2  貴乃花 土佐ノ海   0 1999     1
+3  貴乃花     魁皇   1 1999     1
+4  貴乃花   玉春日   0 1999     1
+5  貴乃花   蒼樹山   1 1999     1
+6  貴乃花   湊富士   1 1999     1
+
+
+実装したロジックは次のとおりです。
+
+幕内71場所の対戦データに、bubという変数をつくり、初期状態は0を設定しておきます。そして、すべての対戦ごとにバブルの判定を行い、対戦する力士のうち片方だけがバブルにある力士のbub変数に1を入れ、その対戦相手のbub変数に-1を入れます。対戦者両者がバブルにある場合は、どちらのbub変数も0のままにします。今回のコードではdf1というデータフレームにbub変数をつくりました。また、幕内力士のうち、前頭の下の方の力士は十両の力士と対戦します。これについてYahoo!スポーツや他のサイトにデータを見つけることができませんでしたが、幕内力士の勝敗データの鏡像イメージとして、ある程度再生はできます。そのときの問題は、十両力士がバブル上にあるかどうかが分からないということですが、ここではより計算結果をアノーマリーにシフトさせるように、幕内力士と対戦する十両力士は全員バブル上にないと仮定します。こうして計算した結果をデータフレームdf1とします。
+
+> head(df1)
+  rikishi       vs win year month day bubcand bub
+1  貴乃花     琴錦   0 1999     1   1       0   0
+2  貴乃花 土佐ノ海   0 1999     1   2       0   0
+3  貴乃花     魁皇   1 1999     1   3       0   0
+4  貴乃花   玉春日   0 1999     1   4       0   0
+5  貴乃花   蒼樹山   1 1999     1   5       0   0
+6  貴乃花   湊富士   1 1999     1   6       0   0
+
+ちなみに、bubcand変数はbubを計算するための一時変数で、day変数は取り組み日です。これらの結果はdf1と名付けたデータフレームに格納しました。
+
+そしてこのバブルであることを示すbub変数とその勝敗フラグのwin変数を線形回帰します。
+
+win ~ beta bub + alpha
+
+bubフラグが1であるというのはバブル上にある力士（bubフラグが-1ならその対戦相手でバブルでない力士）ですので、もしもこの回帰式の回帰変数がプラスで統計的に有意ならば、バブル上にある力士が勝ちやすいということになります。それでは、Rで取り組み日ごとに、線形回帰を計算してみます。
+
+> lmf <- function(d) summary(lm(win ~ bub, d))
+> dlply(df1, .(day), lmf)
+
+...
+
+$`11`
+
+Call:
+lm(formula = win ~ bub, data = d)
+
+Residuals:
+    Min      1Q  Median      3Q     Max 
+-0.6135 -0.5044  0.3865  0.4956  0.6047 
+
+Coefficients:
+            Estimate Std. Error t value Pr(>|t|)    
+(Intercept)  0.50437    0.00940  53.659  < 2e-16 ***
+bub         -0.10908    0.01506  -7.241 5.73e-13 ***
+---
+Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1 
+
+Residual standard error: 0.4955 on 2777 degrees of freedom
+Multiple R-squared: 0.01853,	Adjusted R-squared: 0.01818 
+F-statistic: 52.44 on 1 and 2777 DF,  p-value: 5.73e-13 
+
+
+$`12`
+
+Call:
+lm(formula = win ~ bub, data = d)
+
+Residuals:
+    Min      1Q  Median      3Q     Max 
+-0.5585 -0.4981 -0.4377  0.5019  0.5623 
+
+Coefficients:
+             Estimate Std. Error t value Pr(>|t|)    
+(Intercept)  0.498117   0.009485  52.514  < 2e-16 ***
+bub         -0.060383   0.013651  -4.423 1.01e-05 ***
+---
+Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1 
+
+Residual standard error: 0.4984 on 2759 degrees of freedom
+Multiple R-squared: 0.007041,	Adjusted R-squared: 0.006681 
+F-statistic: 19.56 on 1 and 2759 DF,  p-value: 1.01e-05 
+
+
+$`13`
+
+Call:
+lm(formula = win ~ bub, data = d)
+
+Residuals:
+    Min      1Q  Median      3Q     Max 
+-0.5244 -0.5004  0.4755  0.4996  0.5237 
+
+Coefficients:
+             Estimate Std. Error t value Pr(>|t|)    
+(Intercept)  0.500368   0.009596   52.14   <2e-16 ***
+bub         -0.024077   0.014162   -1.70   0.0892 .  
+---
+Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1 
+
+Residual standard error: 0.4999 on 2712 degrees of freedom
+Multiple R-squared: 0.001065,	Adjusted R-squared: 0.0006962 
+F-statistic:  2.89 on 1 and 2712 DF,  p-value: 0.08923 
+
+
+$`14`
+
+Call:
+lm(formula = win ~ bub, data = d)
+
+Residuals:
+    Min      1Q  Median      3Q     Max 
+-0.5119 -0.5054  0.4881  0.4946  0.5011 
+
+Coefficients:
+             Estimate Std. Error t value Pr(>|t|)    
+(Intercept)  0.505372   0.009631  52.476   <2e-16 ***
+bub         -0.006508   0.015261  -0.426     0.67    
+---
+Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1 
+
+Residual standard error: 0.5001 on 2695 degrees of freedom
+Multiple R-squared: 6.747e-05,	Adjusted R-squared: -0.0003036 
+F-statistic: 0.1818 on 1 and 2695 DF,  p-value: 0.6698 
+
+
+$`15`
+
+Call:
+lm(formula = win ~ bub, data = d)
+
+Residuals:
+    Min      1Q  Median      3Q     Max 
+-0.5111 -0.4970 -0.4830  0.5030  0.5170 
+
+Coefficients:
+            Estimate Std. Error t value Pr(>|t|)    
+(Intercept) 0.497023   0.009683   51.33   <2e-16 ***
+bub         0.014044   0.019770    0.71    0.478    
+---
+Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1 
+
+Residual standard error: 0.5001 on 2666 degrees of freedom
+Multiple R-squared: 0.0001893,	Adjusted R-squared: -0.0001858 
+F-statistic: 0.5046 on 1 and 2666 DF,  p-value: 0.4775 
+
+この線形回帰の結果をみますと、13日目も14日目も千秋楽も回帰係数に統計的にな有意性を見出すことができません。12日目に統計的に有意な回帰係数の-0.060383という結果を得ますが、これは逆相関で値が小さい上に、R二乗値も0.007041であり、ほとんど回帰として意味が無い数字になってしまいました。つまり、1999年1月場所から、2010年9月場所までの71場所の幕内力士だけを見る限り、バブル上の力士が異常に高い勝率になる、ということはいえなさそうです。
+
+そもそもデータを見てみると、幕内力士がバブル上にある対戦は12年間71場所中3381回で、一場所あたり47.6回になります。
+
+> nrow(subset(df1, df1$bub==1))
+[1] 3381
+> nrow(subset(df1, df1$bub==1))/(12*6 - 1)
+[1] 47.61972
+
+この対戦のうち片方のみのバブルの力士が勝利したのが、1468回、一場所あたり、20.7回です。
+
+> nrow(subset(df1, df1$win==1 & df1$bub==1))
+[1] 1468
+> nrow(subset(df1, df1$win==1 & df1$bub==1))/(12*6 - 1)
+[1] 20.67606
+
+幕内力士および幕内で対戦した十両力士の12年間71場所において、バブル上の力士が勝利する平均勝率は0.43というように、実はバブル上の力士の勝率はランダムで対戦したときの勝率より低いのです。
+
+> nrow(subset(df1, df1$win==1 & df1$bub==1))/nrow(subset(df1, df1$bub==1))
+[1] 0.4341911
+
+この結果はDuggan & Levitt 2002のデータおよびその解析と異なります。Duggan & Levittが成立している一番の根拠は、バブル上にある力士の勝率が異常に高く、それが統計的に有意であることにあります。その一番の根拠を確かめることができませんでした。もちろん、今回の計算においては、完全な十両力士の勝敗データを手に入れることができなかったので、不完全な計算とも言えますし、私の計算が誤っていることも考えられます。もしも、この計算の追試や何らかの追加計算をされた方がいらっしゃったら、是非ともその結果を教えてくださることを熱望します。

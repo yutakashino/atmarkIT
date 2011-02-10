@@ -1,7 +1,8 @@
 #read preformatted data by Google Refine
-setwd("/Users/yutakashino/Dropbox/sandboxDrop/@IT/sandbox/sumo/codes/")
-fn <- file("out.csv", open="r", encoding="utf-8")
-df0 <- read.csv(file = fn, header = FALSE)
+#setwd("/Users/yutakashino/Dropbox/sandboxDrop/@IT/sandbox/sumo/codes/")
+#fn <- file("out.csv", open="r", encoding="utf-8")
+#df0 <- read.csv(file = fn, header = FALSE)
+df0 <- read.csv("http://spreadsheets.google.com/pub?key=0AlBuJgqcP5f3dElpb0lWcDRjZldkMzE1LW5aY1VtMHc&hl=en&single=true&gid=0&output=csv", header=FALSE)
 names(df0) <- c("rikishi", "vs", "win", "year", "month")
 #nrow(df0)
 
@@ -17,7 +18,10 @@ bublist <- function(l){
     isbubl <- c(0, 0, 0, 0, 0, 0, 0, 0, 1, 2, 3, 4, 5, 6, 7)
     llengh <- length(l)
     for (i in 1:llengh) {
-        if(i >= 9 & l[i] >= isbubl[i] & l[i] <= 7) blist[i] = 1
+        if(i >= 9){
+            if(l[i-1] >= isbubl[i] & l[i-1] <= 7) blist[i] = 1
+            else blist[i] = 0
+        }
         else blist[i] = 0
     }
     blist
@@ -82,3 +86,9 @@ for (i in 1:length(byear)){
 #linear regression by day
 lmf <- function(d) summary(lm(win ~ bub, d))
 results <- dlply(df1, .(day), lmf)
+
+#library(ggplot2)
+#ggplot(df1, aes(bub, win, color=factor(year))) + facet_wrap(~day) +geom_jitter()
+#models <- dlply(df1, .(day), function(d) lm(win ~ bub, d))
+#coef2 <- ldply(models, function(mod){data.frame()})
+#subset(df1, df1$rikishi=='武蔵丸' & df1$year==1999 & df1$month==1)

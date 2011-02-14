@@ -52,6 +52,8 @@ ggplot(data = melt(df2, id = 'x'), aes(x = x, y = value, colour = variable)) + g
 ggplot(data = df2, aes(x)) + geom_point(aes(y = win_observ, colour = "win_observ")) + geom_line(aes(y = win_observ, colour = "win_observ")) + geom_line(aes(y = win_theory, colour = "win_theory"))
 <<<
 
+このコードで工夫をしているところは>>>>em:plyr<<<<ライブラリの>>>>em:ddply<<<<関数を利用して、場所ごとの力士の勝ち星を一気に計算しているところです。7行目の"df <- ddply(df, .(rikishi, year, month), summarize, numwin=sum(win))"とあるところがそれです。場所ごとの勝ち星を>>>>em:numwin<<<<変数に入れた後、それを>>>>em:ggplot2<<<<ライブラリを用いて二項分布と共にプロットしました。
+
 今回はその続きです。それでは、7勝/8勝のあたりがランダムな事象からずれているというのはわかりましたが、これが意図的に仕組まれたものかどうか、というのが気になります。つまり八百長の可能性です。以下はDuggan&Levitt2002の解析手法に準拠しながら、最新の幕内力士のデータでそれを確かめていきます。
 
 ●バブル上にいる力士
@@ -89,7 +91,7 @@ ggplot(data = df2, aes(x)) + geom_point(aes(y = win_observ, colour = "win_observ
 
 ●バブル上の力士は勝ちやすいか？
 
-このようにバブル判定をして、勝ちフラグとバブルフラグで線形回帰したソースコードを以下に置きました。今回は比較的煩雑な処理が多いので、ここではソースコードは提示せずに、ソースコードをダウンロードするようにします。
+このようにバブル判定をして、勝ちフラグとバブルフラグで線形回帰したソースコードを以下に置きました。今回は比較的煩雑な処理が多いので、ここではソースコードは細かくは提示せずに、ソースコードをダウンロードするようにしました。
 
 http://euler.bakfoo.com/public/sumoregression.R
 

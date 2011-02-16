@@ -2,7 +2,7 @@
 #setwd("/Users/yutakashino/Dropbox/sandboxDrop/@IT/sandbox/sumo/codes/")
 #fn <- file("out.csv", open="r", encoding="utf-8")
 #df0 <- read.csv(file = fn, header = FALSE)
-df0 <- read.csv("http://spreadsheets.google.com/pub?key=0AlBuJgqcP5f3dElpb0lWcDRjZldkMzE1LW5aY1VtMHc&hl=en&single=true&gid=0&output=csv", header=FALSE)
+df0 <- read.csv(file("http://euler.bakfoo.com/public/sumoout.csv", encoding="cp932"), header=FALSE)
 names(df0) <- c("rikishi", "vs", "win", "year", "month")
 #nrow(df0)
 
